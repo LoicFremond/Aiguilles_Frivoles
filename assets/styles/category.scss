@@ -1,0 +1,21 @@
+@import 'app.scss';
+
+.card{
+    border: 1px solid #086622;
+    -moz-box-shadow: 1px 3px 8px 0 #086622;
+	-webkit-box-shadow: 1px 3px 8px 0 #086622;
+	box-shadow: 1px 3px 8px 0 #086622;
+    .card-img {
+        object-fit: cover;
+        object-position: center;
+        height: 350px;
+        border-radius: 0 !important;
+    }
+}
+
+.Rupture {
+    background-color: red;
+    h2{
+        color: #E6EBE0;
+    }
+}

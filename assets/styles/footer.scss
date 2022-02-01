@@ -1,0 +1,171 @@
+.footer {
+	h2 {
+		a {
+			display: inline-block;
+			font-weight: 300;
+			font-size: 1.5em;
+			letter-spacing: 1px;
+			color: #333;
+			text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
+			padding: 0;
+			span {
+				font-weight: 700;
+				color: #E6EBE0;
+				font-size: 2em;
+				text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
+			}
+		}
+	}
+}
+
+.logo__desc2 {
+	text-transform: uppercase;
+	display: block;
+	font-size: 0.7em;
+	margin: 2rem;
+	color: navy;
+	letter-spacing: 7px;
+	font-weight: 600;
+	text-shadow: 3px 1px 3px rgba(78, 73, 73, 0.21);
+}
+
+.footer__list {
+	li {
+		list-style: none;
+		span.fa {
+			color: navy;
+			padding-right: 1em;
+		}
+		a {
+			color: black;
+			text-decoration: none;
+			letter-spacing: 1px;
+			display: block;
+			margin: 1.8em 0;
+			&:hover {
+				color: #EA4335;
+			}
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.move-top {
+	span {
+		color: #212529;
+		text-align: center;
+		border: none;
+		line-height: 2em;
+	}
+}
+
+.footer__social {
+	padding: 2em 0;
+	border-top: 1px solid #086622;
+	margin: 3em 0 0 0;
+	text-align: center;
+	border-bottom: 1px solid #086622;
+}
+
+.footer__social-icons {
+	ul {
+		padding: 0;
+		margin: 0;
+		li {
+			display: inline-block;
+			margin: 0 1em;
+			a {
+				color: #333;
+				text-align: center;
+				span.fa.fa-facebook {
+					height: 32px;
+					width: 32px;
+					line-height: 32px;
+					background: transparent;
+					margin-right: 4px;
+					color: #3b5998;
+					transition: 0.2s all;
+					-webkit-transition: 0.2s all;
+					-moz-transition: 0.2s all;
+					-o-transition: 0.2s all;
+					-ms-transition: 0.2s all;
+				}
+				&:hover {
+					span.fa.fa-facebook {
+						height: 32px;
+						width: 32px;
+						line-height: 32px;
+						background: #3b5998;
+						color: #FFFFFF;
+						border-radius: 50%;
+					}
+					span.fa.fa-instagram {
+						height: 32px;
+						width: 32px;
+						line-height: 32px;
+						background: red;
+						color: #FFFFFF;
+						border-radius: 50%;
+					}
+					span.fa.fa-twitter {
+						height: 32px;
+						width: 32px;
+						line-height: 32px;
+						background: #1da1f2;
+						color: #FFFFFF;
+						border-radius: 50%;
+					}
+					span.fa.fa-google {
+						height: 32px;
+						width: 32px;
+						line-height: 32px;
+						background: #ea4335;
+						color: #FFFFFF;
+						border-radius: 50%;
+					}
+				}
+				span.fa.fa-instagram {
+					height: 32px;
+					width: 32px;
+					line-height: 32px;
+					background: transparent;
+					margin-right: 4px;
+					color: red;
+					transition: 0.2s all;
+					-webkit-transition: 0.2s all;
+					-moz-transition: 0.2s all;
+					-o-transition: 0.2s all;
+					-ms-transition: 0.2s all;
+				}
+				span.fa.fa-twitter {
+					height: 32px;
+					width: 32px;
+					line-height: 32px;
+					background: transparent;
+					margin-right: 4px;
+					color: #1da1f2;
+					transition: 0.2s all;
+					-webkit-transition: 0.2s all;
+					-moz-transition: 0.2s all;
+					-o-transition: 0.2s all;
+					-ms-transition: 0.2s all;
+				}
+				span.fa.fa-google {
+					height: 32px;
+					width: 32px;
+					line-height: 32px;
+					background: transparent;
+					margin-right: 4px;
+					color: #ea4335;
+					transition: 0.2s all;
+					-webkit-transition: 0.2s all;
+					-moz-transition: 0.2s all;
+					-o-transition: 0.2s all;
+					-ms-transition: 0.2s all;
+				}
+			}
+		}
+	}
+}

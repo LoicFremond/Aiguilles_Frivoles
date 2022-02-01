@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Panier
+{% endblock %}
+
+
+{% block body %}
+        {% block flash_messages %}
+            {{ include('@EasyAdmin/flash_messages.html.twig') }}
+        {% endblock flash_messages %}
+	<h1 class="mb-lg-5 mb-4 text-center">Panier</h1>
+	<div class="cart d-flex flex-wrap my-5">
+		{% for element in dataCart %}
+			<div class="card col-sm-5 col-md-4 mx-auto">
+				<div class="card-header">
+					<h2 class="text-center">{{ element.product.name }}</h2>
+				</div>
+				<div class="card-body text-center">
+					<p class="mb-2">{{ element.product.price|number_format(2) }}€</p>
+					<img class="card-img" src="{{ element.product.picture }}" alt="{{ element.product.name }}">
+					<p class="d-none d-md-block mt-2">{{ element.product.description }}</p>
+				</div>
+				<div class="card-footer text-center">
+					<a href="{{ path("cart_delete", {'id': element.product.id}) }}">
+						<i class="fas fa-trash"></i>
+					</a>
+				</div>
+			</div>
+		{% else %}
+			<div>
+				<h2>Votre panier est vide</h2>
+			</div>
+		{% endfor %}
+	</div>
+	{% if total > 0 %}
+		<div class="text-center">
+			<div>
+				<h2>Total:
+					{{ total|number_format(2) }}€</h2>
+			</div>
+			<div class="mx-auto">
+					<a class="btn shop m-2" href="{{ path("cart_delete_all") }}">Vider le Panier</a>
+					<a class="btn shop m-2" href="{{ path("cart_basket") }}">Valider le Panier</a>
+			</div>
+		</div>
+	{% endif %}
+</div>{% endblock %}

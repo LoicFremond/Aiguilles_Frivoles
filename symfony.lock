@@ -222,6 +222,9 @@
     "sebastian/version": {
         "version": "3.0.2"
     },
+    "select2/select2": {
+        "version": "4.0.13"
+    },
     "sensio/framework-extra-bundle": {
         "version": "6.2",
         "recipe": {
@@ -233,6 +236,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "swiftmailer/swiftmailer": {
+        "version": "v6.3.0"
     },
     "symfony/asset": {
         "version": "v5.4.0"
@@ -357,6 +363,15 @@
     },
     "symfony/intl": {
         "version": "v5.4.2"
+    },
+    "symfony/mailchimp-mailer": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "1be490e068472fc87e226cf54bc95fb6f2e49117"
+        }
     },
     "symfony/mailer": {
         "version": "5.4",
@@ -524,6 +539,20 @@
     "symfony/string": {
         "version": "v5.4.2"
     },
+    "symfony/swiftmailer-bundle": {
+        "version": "3.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "f0b2fccdca2dfd97dc2fd5ad216d5e27c4f895ac"
+        },
+        "files": [
+            "config/packages/dev/swiftmailer.yaml",
+            "config/packages/swiftmailer.yaml",
+            "config/packages/test/swiftmailer.yaml"
+        ]
+    },
     "symfony/translation": {
         "version": "5.4",
         "recipe": {
@@ -623,8 +652,14 @@
     "theseer/tokenizer": {
         "version": "1.2.1"
     },
+    "twbs/bootstrap-icons": {
+        "version": "v1.7.2"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.7"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.5"
     },
     "twig/twig": {
         "version": "v3.3.7"

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('category') }}
+{% endblock %}
+{% block title %}
+	{{ category.name }}
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+
+		<h1 class="my-5 text-center">{{ category.name }}</h1>
+		<div class="d-flex flex-wrap">
+			{% for product in selectByCategory %}
+				<div class="card mx-auto col-md-3 mt-5 position-relative">
+				{% if product.status == true %}
+				{% else %}
+					<div class="Rupture card-header position-absolute text-center w-100">
+						<h2>Rupture</h2>
+					</div>
+				{% endif %}
+					<a href="{{ path('article', {'categorySlug' : category.slug , 'productSlug': product.slug}) }}">
+							<img src="{{ product.picture }}" class="card-img" alt="{{ product.name }}">
+						<div class="card-body">
+							<h3 class="card-title text-center">{{ product.name }}</h3>
+							<p class="card-text mt-2 text-end">{{ product.price }}€ + Frais de port</p>
+							<p class="card-text">{{ product.description }}</p>
+						</div>
+						<div class="card-footer text-center">
+			{% if product.status == true %}
+				<a class="btn shop" href="{{ path('cart_add', {'id': product.id}) }}">Panier</a>
+			{% else %}
+				<p class="btn rupt">Epuisé</p>
+			{% endif %}
+						</div>
+					</a>
+				</div>
+			{% else %}
+				<h2>Aucun article de disponible</h2>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

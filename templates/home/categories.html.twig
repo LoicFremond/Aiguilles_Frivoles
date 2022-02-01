@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collections{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1 class="my-5 text-center">Mes Collections</h1>
+            {% for category in categories %}
+            <div class="card text-center mt-5">
+                <div class="card-header">
+                    <h2 class="card-title">{{ category.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Ici vous trouverez tous les produits de la collection {{ category.name }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('category', {'categorySlug': category.slug}) }}" class="btn shop">Y aller</a>
+                </div>
+            </div>
+            {% else %}
+                    <h2>Aucune collection de disponible</h2>
+                </div>
+            {% endfor %}
+    </div>
+{% endblock %}

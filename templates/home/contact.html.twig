@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('contact') }}
+{% endblock %}
+
+{% block title %}Me contacter
+{% endblock %}
+
+{% block body %}
+        {% block flash_messages %}
+            {{ include('@EasyAdmin/flash_messages.html.twig') }}
+        {% endblock flash_messages %}
+	<section class="banner-bottom py-5">
+		<div class="container py-md-5">
+			<h1 class="mb-lg-5 mb-4 text-center">Me Contacter
+			</h1>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="contact__left p-lg-5 p-4">
+						<p class="text-center">Par mail :
+							<a href="mailto:xinty@les-aiguilles-frivoles.fr">xinty@les-aiguilles-frivoles.fr</a>
+						</p>
+						{% if app.user %}
+							{{ form_start(form) }}
+							{{ form_row(form.name, {attr: { value : app.user.lastname }}) }}
+							{{ form_row(form.email, {attr: { value : app.user.email }}) }}
+							{{ form_row(form.message) }}
+							{{ form_row(form.phone, {attr: { value : app.user.phone }}) }}
+							<div class="d-none">
+							{{ form_row(form.recipient)  }}</div>
+							<button class="btn shop">{{ button_label|default('Envoyer') }}</button>
+							{{ form_end(form) }}
+						{% else %}
+							{{ form_start(form) }}
+							{{ form_row(form.name) }}
+							{{ form_row(form.email) }}
+							{{ form_row(form.message) }}
+							{{ form_row(form.phone) }}
+							<div class="d-none">
+							{{ form_row(form.recipient)  }}</div>
+							<button class="btn shop">{{ button_label|default('Envoyer') }}</button>
+							{{ form_end(form) }}
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-md-6 contact__right p-4">
+					<iframe width="500" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Saint-Maurice%20sur%20Adour&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+				</div>
+			</div>
+		</section>
+	{% endblock %}

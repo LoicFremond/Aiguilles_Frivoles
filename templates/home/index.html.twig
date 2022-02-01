@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
+{% block title %}Bienvenue
+{% endblock %}
+{% block body %}
+        {% block flash_messages %}
+            {{ include('@EasyAdmin/flash_messages.html.twig') }}
+        {% endblock flash_messages %}
+	<head>
+		{% if event is not null %}
+			<div class="card text-center col-md-8 mx-auto my-5">
+				<div class="card-header alert alert-danger">
+					<h1>Prochain évènement à ne pas rater</h1>
+					<h2>{{ event.title }}</h2>
+				</div>
+				<p>{{ event.address }}
+					{{ event.city }}
+					{{ event.postalCode }}</p>
+				<div class="card-body d-flex flex-row justify-content-between">
+					<p>Le
+						{{ event.date|format_date('full') }}</p>
+					<p>{{ event.hour }}</p>
+				</div>
+				<p>{{ event.description }}</p>
+				<div class="card-footer">
+					<a class="btn shop" target="_blank" href="http://maps.google.com/?q={{ event.address }} {{ event.postalCode }} {{ event.city }}">S'y rendre</a>
+				</div>
+			</div>
+		{% endif %}
+		<div class="banner__top container mt-3 col-12">
+			<div class="row">
+				<div class="col-lg-5 my-auto mx-auto">
+					<h3>Un large choix
+						<span>de Frivolité</span>
+					</h3>
+					<a href="{{ path('categories') }}" class="btn shop">Voir les collections</a>
+				</div>
+				<div class="col-lg-5 mt-3">
+					<img src="https://i.ibb.co/R4CNLTb/IMG-20220122-101527.jpg" alt="Les Aiguilles Frivoles" class="img-fluid">
+				</div>
+			</div>
+		</div>
+	</head>
+</div>
+<section class="py-5">
+	<div class="container py-md-3 banner__middle">
+		<div class="row text-center">
+			<div class="col-lg-5 banner__middle-content mx-auto my-2">
+				<div class="banner__middle-content--info">
+					<h4>Fait à la main</h4>
+					<p class="pb-2">Tous mes articles sont créés par moi même.</p>
+				</div>
+			</div>
+			<div class="col-lg-5 banner__middle-content mx-auto">
+				<div class="banner__middle-content--info">
+					<h4>Livraison ou Récupération sur place</h4>
+					<p class="pb-2">Pour la récupération sur place les prix ne change pas, Par contre pour la livraison il y aura (tarif) de frais de port compris. Livraison (à domicile ou en point relais)</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container py-md-5">
+	<div class="row">
+		<div class="col-lg-4 text-center mt-lg-5">
+			<h3 class="banner__bottom-info mb-lg-5 mb-4">Nouveautés</h3>
+			<p>Ici vous trouverez les articles nouvellement créés et disponible.</p>
+		</div>
+		<div class="col-lg-8">
+			<div class="row">
+				{% for product in products %}
+					<div class="col-md-3">
+						<a href="#{{ product.name }}"><img src="{{ product.picture }}" alt="" class="card-img mt-4"></a>
+					</div>
+					<div id="{{ product.name }}" class="popup__content">
+						<div class="popup">
+							<a href="">
+								<img src="{{ product.picture }}" alt="Popup image" class="img-fluid mt-4"/>
+								<a class="close" href="#gallery">&times;</a>
+								<h1 class="my-2">{{ product.name }}</h1>
+								<p>{{ product.price }}€ + Frais de port
+								</p>
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

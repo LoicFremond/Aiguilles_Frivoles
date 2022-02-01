@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('product') }}
+{% endblock %}
+{% block title %}{% endblock %}
+
+{% block body %}
+	<div class="container-fluid position-relative">
+		<h1 class="my-5 text-center">{{ product.name }}</h1>
+		<div class="d-flex flex-wrap">
+			<img src="{{ product.picture }}" class="product__img" alt="{{ product.name }}">
+			<div class="mx-5 my-auto">
+				<p class="">Description :
+					{{ product.description }}</p>
+			</div>
+		</div>
+		<div class="text-center">
+			<p class="my-2">Prix :
+				{{ product.price }}€ + Frais de port</p>
+			{% if product.status == true %}
+				<a class="btn shop" href="{{ path('cart_add', {'id': product.id}) }}">Ajouter au panier</a>
+			{% else %}
+				<p class="btn rupt">Rupture de stock</p>
+			{% endif %}
+		</div>
+	</div>
+</div></div></div>{% endblock %}

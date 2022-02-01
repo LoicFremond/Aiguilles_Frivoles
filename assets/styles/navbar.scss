@@ -1,0 +1,38 @@
+#logo {
+	a {
+		float: left;
+		font-size: .8em;
+		display: initial;
+		margin: 0;
+		letter-spacing: 0px;
+		font-weight: 300;
+		padding: 3px 0;
+		border: none;
+		span {
+			color: #E6EBE0;
+			font-size: 1.4em;
+			font-weight: 700;
+			text-shadow: 2px 2px 5px #000000;
+		}
+	}
+}
+
+.logo__desc {
+	text-transform: uppercase;
+	display: block;
+	font-size: 0.8em;
+	margin: 0;
+	color: navy;
+	letter-spacing: 4px;
+	font-weight: 600;
+	text-shadow: 3px 1px 3px rgba(78, 73, 73, 0.21);
+}
+
+.profile__menu {
+	font-size: 1.5rem;
+}
+
+.cart {
+	color: black;
+	font-size: 1.2rem;
+}

@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-light light" id="main">
+	<div class="mx-3" id="logo">
+		<h1>
+			<a href="/">
+				<span>Les
+				</span>Aiguilles Frivoles</a>
+		</h1>
+		<label class="logo__desc">Dentelle artisanale</label>
+	</div>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+		<div class="navbar-nav mx-auto">
+			<a class="nav-item nav-link ml-md-3 mx-2" href="">
+				<i class="fas fa-question"></i>
+				Qui Suis-Je</a>
+			<li class="nav-item dropdown mx-2">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<i class="fas fa-tags"></i>
+					Les Collections
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					{% for category in categories %}
+						<a class="dropdown-item" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}</a>
+					{% endfor %}
+					<hr>
+					<a class="dropdown-item" disabled href="{{ path('categories') }}">Toutes les collections</a>
+				</div>
+			</li>
+			<a class="nav-item nav-link ml-md-3 mx-2" href="{{ path('contact') }}">
+				<i class="fas fa-paper-plane"></i>
+				Me Contacter</a>
+		</div>
+        <div class="{{ app.request.attributes.get('_route') == 'cart_index' }}">
+            <a class="customer_menu_item"
+               href={{ path('cart_index') }}>
+                <span class="cart badge badge-pill">{{ app.session.get('cartTotal')|number_format(2) }}€</span>
+                <span> <i class="fas fa-shopping-cart"></i></span>
+            </a>
+        </div>
+		<div class="navbar-nav">
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				{% if app.user is defined %}
+					<div class="mx-5 btn-group dropstart">
+						<a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="profile__menu far fa-user-circle"></i>
+						</a>
+						<ul class="dropdown-menu">
+					{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+						<a class="dropdown-item" href="{{ path('admin') }}">
+							<i class="fas fa-tools mx-2"></i>
+							Admin</a>
+							{# {% else %} #}
+							<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}"><i class="fas fa-user mx-2"></i>Profil</a>
+							<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}"><i class="fas fa-comments mx-2"></i></i>Messages</a>
+							<a class="dropdown-item" href="{{ path('orders', {'id': app.user.id}) }}"><i class="fas fa-shopping-cart mx-2"></i></i>Commandes</a>
+					{% endif %}
+							<a class="dropdown-item" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt mx-2"></i>Se Déconnecter</a>
+						</ul>
+					</div>
+
+				{% endif %}
+			{% else %}
+				<a class="nav-item nav-link" href="{{ path('login') }}">
+					<i class="fas fa-sign-in-alt"></i>
+					Se connecter</a>
+				<a class="nav-item nav-link" href="{{ path('register') }}">
+					<i class="fas fa-user-plus"></i>
+					S'enregistrer</a>
+			{% endif %}
+		</div>
+		</div>
+	</div>
+</nav>

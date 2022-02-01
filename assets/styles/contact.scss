@@ -1,0 +1,15 @@
+@import 'app.scss';
+
+.contact__left {
+	border: 2px solid #f7f7f7;
+}
+
+.contact__right {
+	border: 2px solid #f7f7f7;
+	iframe {
+		width: 100%;
+		outline: none;
+		border: none;
+		height: 100%;
+	}
+}
