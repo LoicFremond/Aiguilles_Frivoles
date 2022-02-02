@@ -6,13 +6,10 @@ use App\Entity\Event;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\Messages;
-use App\Entity\Order;
-use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\EventRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
-use App\Repository\OrderRepository;
 use App\Service\CartManager;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,7 +34,7 @@ class HomeController extends AbstractController
 
         $session->set('cartTotal', $cartDatas['total']);
         $event = new Event;
-        $event = $eventRepository->findOneBy(['status' => 1]);
+        $event = $eventRepository->findBy(['status' => 1]);
         $categories = new Category;
         $categories = $categoryRepository->findAll();
         $products = new Product;

@@ -28,7 +28,7 @@ class ProductRepository extends ServiceEntityRepository
             ->andWhere('p.status = :disponible')
             ->setParameter('disponible', '1')
             ->orderBy('p.id', 'DESC')
-            ->setMaxResults(8)
+            ->setMaxResults(12)
             ->getQuery()
             ->getResult()
         ;

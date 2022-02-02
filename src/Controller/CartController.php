@@ -2,17 +2,13 @@
 
 namespace App\Controller;
 
-use DateTime;
 use App\Entity\User;
-use App\Entity\Event;
 use App\Entity\Order;
 use DateTimeImmutable;
 use App\Entity\Product;
 use App\Entity\Category;
-use App\Entity\OrderProduct;
 use App\Service\CartManager;
 use App\Service\OrderManager;
-use App\Repository\EventRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
- * @Route("/cart", name="cart_")
+ * @Route("/panier", name="cart_")
  */
 class CartController extends AbstractController
 {
@@ -109,7 +105,7 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/delete-all/", name="delete_all")
+     * @Route("/empty/", name="delete_all")
      * @param SessionInterface $session
      * @return Response A response instance
      */
@@ -121,7 +117,7 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/basket", name="basket")
+     * @Route("/validate", name="basket")
      * @param User $user
      * @throws Exception
      */

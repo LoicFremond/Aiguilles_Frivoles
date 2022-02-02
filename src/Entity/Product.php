@@ -79,6 +79,11 @@ class Product
      */
     private $size;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gems2;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -249,6 +254,18 @@ class Product
     public function setSize(?string $size): self
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    public function getGems2(): ?string
+    {
+        return $this->gems2;
+    }
+
+    public function setGems2(?string $gems2): self
+    {
+        $this->gems2 = $gems2;
 
         return $this;
     }

@@ -12,7 +12,7 @@
                     <h2 class="card-title">{{ category.name }}</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Ici vous trouverez tous les produits de la collection {{ category.name }}</p>
+                    <p class="card-text">Il y a actuellement {{ category.product|length }} article{% if category.product|length > 1 %}s{% endif %}  dans la collection {{ category.name }}</p>
                 </div>
                 <div class="card-footer">
                     <a href="{{ path('category', {'categorySlug': category.slug}) }}" class="btn shop">Y aller</a>

@@ -35,7 +35,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/Enregistrement", name="register", methods={"GET","POST"})
+     * @Route("/inscription", name="register", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */
@@ -66,7 +66,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/Profil/{id}", name="profile")
+     * @Route("/profil/{id}", name="profile")
      * @ParamConverter("user", options={"mapping": {"id": "id"}})
      * @param Request $request
      * @param User    $user
@@ -110,7 +110,7 @@ class UserController extends AbstractController
     }
 
         /**
-     * @Route("/Profil/{id}/Messages", name="messages")
+     * @Route("/profil/{id}/messages", name="messages")
      * @ParamConverter("user", options={"mapping": {"id": "id"}})
      * @param Request $request
      * @param User    $user
@@ -135,7 +135,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/Profil/{id}/commandes", name="orders")
+     * @Route("/profil/{id}/commandes", name="orders")
      * @ParamConverter("user", options={"mapping": {"id": "id"}})
      */
     public function showOrder(CategoryRepository $categoryRepository, OrderRepository $orderRepository, User $user): Response

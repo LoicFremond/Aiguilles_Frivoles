@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -27,14 +28,17 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name', 'Nom'),
             MoneyField::new('price', 'Prix'),
             TextareaField::new('description', 'Description'),
-            BooleanField::new('status', 'Status'),
+            BooleanField::new('status', 'Disponible'),
             ImageField::new('picture', 'Photo'),
             TextField::new('material', 'Materiaux'),
-            TextField::new('gems', 'Gemme'),
-            TextField::new('size', 'Dimension'),
-            TextField::new('closing', 'Fermeture'),
-            AssociationField::new('category', 'Collection')
+            TextField::new('gems', 'Gemmes'),
+            TextField::new('gems2', 'Gemmes')
             ->hideOnIndex(),
+            TextField::new('size', 'Dimension')
+            ->hideOnIndex(),
+            TextField::new('closing', 'Fermeture')
+            ->hideOnIndex(),
+            AssociationField::new('category', 'Collection'),
             SlugField::new('slug', 'Slug - Actualisation Automatique')
             ->hideOnIndex()
             ->setTargetFieldName('name'),
