@@ -4,7 +4,6 @@
 	Panier
 {% endblock %}
 
-
 {% block body %}
         {% block flash_messages %}
             {{ include('@EasyAdmin/flash_messages.html.twig') }}
@@ -12,7 +11,7 @@
 	<h1 class="mb-lg-5 mb-4 text-center">Panier</h1>
 	<div class="cart d-flex flex-wrap my-5">
 		{% for element in dataCart %}
-			<div class="card col-sm-5 col-md-4 mx-auto">
+			<div class="card col-sm-5 col-md-3 mx-auto">
 				<div class="card-header">
 					<h2 class="text-center">{{ element.product.name }}</h2>
 				</div>
@@ -45,4 +44,5 @@
 			</div>
 		</div>
 	{% endif %}
-</div>{% endblock %}
+</div>
+{% endblock %}

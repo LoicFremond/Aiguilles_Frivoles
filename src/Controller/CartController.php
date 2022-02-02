@@ -2,24 +2,26 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
-use App\Entity\Order;
-use App\Entity\OrderProduct;
-use App\Entity\Product;
+use DateTime;
 use App\Entity\User;
-use App\Repository\CategoryRepository;
-use App\Repository\ProductRepository;
+use App\Entity\Event;
+use App\Entity\Order;
+use DateTimeImmutable;
+use App\Entity\Product;
+use App\Entity\Category;
+use App\Entity\OrderProduct;
 use App\Service\CartManager;
 use App\Service\OrderManager;
-use DateTime;
-use DateTimeImmutable;
+use App\Repository\EventRepository;
+use App\Repository\ProductRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/cart", name="cart_")
@@ -40,13 +42,11 @@ class CartController extends AbstractController
     ): Response {
         /** @var array $cart */
         $cart = $session->get("cart", []);
-
         $cartDatas = $cartManager->getDatasFromCart($cart);
-
         $session->set('cartTotal', $cartDatas['total']);
-
         $categories = new Category;
         $categories = $categoryRepository->findAll();
+
         return $this->render('cart/index.html.twig', [
             'dataCart' => $cartDatas['data'],
             'products' => $productRepository->findAll(),
@@ -66,8 +66,7 @@ class CartController extends AbstractController
     public function add(
         Product $product,
         SessionInterface $session,
-        CartManager $cartManager,
-        ProductRepository $productRepository
+        CartManager $cartManager
     ): Response {
         /** @var array $cart */
         $cart = $session->get("cart", []);
@@ -82,10 +81,8 @@ class CartController extends AbstractController
         }
 
         $cartDatas = $cartManager->getDatasFromCart($cart);
-
         $session->set('cartTotal', $cartDatas['total']);
         $session->set("cart", $cart);
-
 
         return $this->redirectToRoute("cart_index");
     }
@@ -107,6 +104,7 @@ class CartController extends AbstractController
             }
             $session->set("cart", $cart);
         }
+
         return $this->redirectToRoute("cart_index");
     }
 
@@ -154,9 +152,48 @@ class CartController extends AbstractController
         $newOrder->setCreatedAt($date);
         $newOrder->setPrice($data['total']);
         $ema->flush();
-        $session->set("cart", []);
 
-        $this->addFlash('success', 'Votre commande a été passée avec succès. Je vous contacterai sous peu pour procéder à la finalisation et au réglement.');
+        $this->addFlash('success', 'Votre commande a été passée avec succès. Je vous contacterai sous peu pour procéder à la finalisation et au réglement ou vous pouvez payer dès maintenant.');
+
+        return $this->redirectToRoute('cart_payment');
+    }
+
+    /**
+     * @Route("/payment", name="payment", methods={"GET", "POST"})
+     * @param SessionInterface $session
+     * @param CartManager $cartManager
+     * @return Response A response instance
+     */
+    public function payment(
+        SessionInterface $session,
+        ProductRepository $productRepository,
+        CartManager $cartManager,
+        CategoryRepository $categoryRepository
+    ): Response {
+        /** @var array $cart */
+        $cart = $session->get("cart", []);
+
+        $cartDatas = $cartManager->getDatasFromCart($cart);
+
+        $session->set('cartTotal', $cartDatas['total']);
+
+        $categories = new Category;
+        $categories = $categoryRepository->findAll();
+        return $this->render('cart/payment.html.twig', [
+            'dataCart' => $cartDatas['data'],
+            'products' => $productRepository->findAll(),
+            'total' => $cartDatas['total'],
+            'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * @Route("/payment/finish", name="finish")
+     */
+    public function finish(
+        SessionInterface $session
+    ): Response {
+        $session->set("cart", []);
 
         return $this->redirectToRoute('home');
     }
