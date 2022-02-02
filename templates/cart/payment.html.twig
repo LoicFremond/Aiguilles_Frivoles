@@ -55,8 +55,8 @@
                         unit_amount : { value : {{ dataCart[3].product.price }}, currency_code : "EUR" }
                     },
                     {% endif %}
-                    // Frais de port offert si 3 articles ou plus
-                    {% if dataCart[2] is not defined %}
+                    // Frais de port offert si 2 articles ou plus
+                    {% if dataCart[1] is not defined %}
                     {
                         name : "Frais de Port",
                         description : "Livraison à domicile",

@@ -11,6 +11,7 @@
 	<div class="container-fluid">
 
 		<h1 class="my-5 text-center">{{ category.name }}</h1>
+		<a class="btn shop" href="{{ path('categories') }}">Retour</a>
 		<div class="d-flex flex-wrap">
 			{% for product in selectByCategory %}
 				<div class="card mx-md-5 col-md-3  col-12 mt-5 position-relative">

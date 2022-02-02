@@ -80,8 +80,8 @@ class CartController extends AbstractController
         $session->set('cartTotal', $cartDatas['total']);
         $session->set("cart", $cart);
 
-        return $this->redirectToRoute("cart_index");
-    }
+        return $this->redirect($_SERVER['HTTP_REFERER']);
+        }
 
     /**
      * @Route("/delete/{id}", name="delete")

@@ -8,26 +8,32 @@
 {% block body %}
 	<div class="container-fluid position-relative">
 		<h1 class="my-5 text-center">{{ product.name }}</h1>
+		<a class="btn shop mb-5" href="javascript:history.go(-1)">Retour</a>
 		<div class="d-flex flex-wrap">
 			<img src="{{ product.picture }}" class="product__img" alt="{{ product.name }}">
 			<div class="mx-5 my-auto">
 				<p>Description :
 					{{ product.description }}</p>
-					{% if product.material %}
-					<p>Materiaux : {{ product.material }}</p>
-					{% endif %}
-					{% if product.gems %}
-					<p>Gemmes : {{ product.gems }}</p>
-					{% endif %}
-					{% if product.gems2 %}
-					<p>Gemmes : {{ product.gems2 }}</p>
-					{% endif %}
-					{% if product.closing %}
-					<p>Fermeture : {{ product.closing }}</p>
-					{% endif %}
-					{% if product.size %}
-					<p>Dimension : {{ product.size }}</p>
-					{% endif %}
+				{% if product.material %}
+					<p>Materiaux :
+						{{ product.material }}</p>
+				{% endif %}
+				{% if product.gems %}
+					<p>Gemmes :
+						{{ product.gems }}</p>
+				{% endif %}
+				{% if product.gems2 %}
+					<p>Gemmes :
+						{{ product.gems2 }}</p>
+				{% endif %}
+				{% if product.closing %}
+					<p>Fermeture :
+						{{ product.closing }}</p>
+				{% endif %}
+				{% if product.size %}
+					<p>Dimension :
+						{{ product.size }}</p>
+				{% endif %}
 			</div>
 		</div>
 		<div class="text-center">
@@ -39,10 +45,10 @@
 				<p class="btn rupt">Rupture de stock</p>
 			{% endif %}
 		</div>
-			<a target="_blank" href="//www.facebook.com/sharer.php?u=http://localhost:8000{{ path('article', {'categorySlug' : product.category.slug , 'productSlug': product.slug}) }}" class="share__facebook" title="Partager sur Facebook">
-				<span class="fa fa-facebook"></span>
-				<span>Partager</span>
-				<span class="visually-hidden">Partager sur Facebook</span>
-			</a>
+		<a target="_blank" href="//www.facebook.com/sharer.php?u=http://localhost:8000{{ path('article', {'categorySlug' : product.category.slug , 'productSlug': product.slug}) }}" class="share__facebook" title="Partager sur Facebook">
+			<span class="fa fa-facebook"></span>
+			<span>Partager</span>
+			<span class="visually-hidden">Partager sur Facebook</span>
+		</a>
 	</div>
 </div></div></div>{% endblock %}
