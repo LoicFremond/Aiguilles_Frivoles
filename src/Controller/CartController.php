@@ -142,21 +142,21 @@ class CartController extends AbstractController
         $newOrder = new Order();
         /** @var User $user */
         $user = $this->getUser();
-            foreach ($newCart as $products) {
-                foreach ($products as $product) {
-            $newOrder->addProduct($product);
-            $newOrder->setPrice($product->getPrice());
-            $newOrder->getId($newOrder);
-            $newOrder->setClient($user);
-            $ema->persist($newOrder);
+        foreach ($newCart as $products) {
+            foreach ($products as $product) {
+                $newOrder->addProduct($product);
+                $newOrder->setPrice($product->getPrice());
+                $newOrder->getId($newOrder);
+                $newOrder->setClient($user);
+                $ema->persist($newOrder);
+            }
         }
-    }
-    $newOrder->setCreatedAt($date);
-    $newOrder->setPrice($data['total']);
+        $newOrder->setCreatedAt($date);
+        $newOrder->setPrice($data['total']);
         $ema->flush();
         $session->set("cart", []);
 
-        $this->addFlash('success', 'Votre commande a été passée avec succès');
+        $this->addFlash('success', 'Votre commande a été passée avec succès. Je vous contacterai sous peu pour procéder à la finalisation et au réglement.');
 
         return $this->redirectToRoute('home');
     }

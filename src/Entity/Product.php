@@ -59,6 +59,26 @@ class Product
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $material;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gems;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $closing;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $size;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -181,6 +201,54 @@ class Product
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getMaterial(): ?string
+    {
+        return $this->material;
+    }
+
+    public function setMaterial(?string $material): self
+    {
+        $this->material = $material;
+
+        return $this;
+    }
+
+    public function getGems(): ?string
+    {
+        return $this->gems;
+    }
+
+    public function setGems(?string $gems): self
+    {
+        $this->gems = $gems;
+
+        return $this;
+    }
+
+    public function getClosing(): ?string
+    {
+        return $this->closing;
+    }
+
+    public function setClosing(?string $closing): self
+    {
+        $this->closing = $closing;
+
+        return $this;
+    }
+
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    public function setSize(?string $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }

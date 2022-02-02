@@ -32,44 +32,47 @@
 				<i class="fas fa-paper-plane"></i>
 				Me Contacter</a>
 		</div>
-        <div class="{{ app.request.attributes.get('_route') == 'cart_index' }}">
-            <a class="customer_menu_item"
-               href={{ path('cart_index') }}>
-                <span class="cart badge badge-pill">{{ app.session.get('cartTotal')|number_format(2) }}€</span>
-                <span> <i class="fas fa-shopping-cart"></i></span>
-            </a>
-        </div>
 		<div class="navbar-nav">
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				{% if app.user is defined %}
+					<div class="{{ app.request.attributes.get('_route') == 'cart_index' }}">
+						<a class="customer_menu_item" href={{ path('cart_index') }}>
+							<span class="cart badge badge-pill">{{ app.session.get('cartTotal')|number_format(2) }}€</span>
+							<span>
+								<i class="fas fa-shopping-cart"></i>
+							</span>
+						</a>
+					</div>
 					<div class="mx-5 btn-group dropstart">
 						<a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="profile__menu far fa-user-circle"></i>
 						</a>
 						<ul class="dropdown-menu">
-					{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+							{% if app.user.roles[0] == "ROLE_USER" %}
+								<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}">
+									<i class="fas fa-user mx-2"></i>Profil</a>
+								<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}">
+									<i class="fas fa-comments mx-2"></i>
+								</i>Messages</a>
+							<a class="dropdown-item" href="{{ path('orders', {'id': app.user.id}) }}">
+								<i class="fas fa-shopping-cart mx-2"></i>
+							</i>Commandes</a>
+					{% else %}
 						<a class="dropdown-item" href="{{ path('admin') }}">
 							<i class="fas fa-tools mx-2"></i>
 							Admin</a>
-							{# {% else %} #}
-							<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}"><i class="fas fa-user mx-2"></i>Profil</a>
-							<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}"><i class="fas fa-comments mx-2"></i></i>Messages</a>
-							<a class="dropdown-item" href="{{ path('orders', {'id': app.user.id}) }}"><i class="fas fa-shopping-cart mx-2"></i></i>Commandes</a>
 					{% endif %}
-							<a class="dropdown-item" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt mx-2"></i>Se Déconnecter</a>
-						</ul>
-					</div>
-
-				{% endif %}
-			{% else %}
-				<a class="nav-item nav-link" href="{{ path('login') }}">
-					<i class="fas fa-sign-in-alt"></i>
-					Se connecter</a>
-				<a class="nav-item nav-link" href="{{ path('register') }}">
-					<i class="fas fa-user-plus"></i>
-					S'enregistrer</a>
-			{% endif %}
-		</div>
-		</div>
-	</div>
-</nav>
+					<a class="dropdown-item" href="{{ path('logout') }}">
+						<i class="fas fa-sign-out-alt mx-2"></i>Se Déconnecter</a>
+				</ul>
+			</div>
+		{% endif %}
+	{% else %}
+		<a class="nav-item nav-link" href="{{ path('login') }}">
+			<i class="fas fa-sign-in-alt"></i>
+			Se connecter</a>
+		<a class="nav-item nav-link" href="{{ path('register') }}">
+			<i class="fas fa-user-plus"></i>
+			S'enregistrer</a>
+	{% endif %}
+</div></div></div></nav>

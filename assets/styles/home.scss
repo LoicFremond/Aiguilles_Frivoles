@@ -1,7 +1,7 @@
 @import 'app.scss';
 
 .img-fluid {
-	border-radius: 25px;
+	border-radius: 5px;
 	border: navy 4px solid;
 }
 
@@ -35,7 +35,7 @@
 		margin: auto;
 	}
 	background: #E6EBE0;
-	border-radius: 4px;
+	border-radius: 5px;
 	max-width: 400px;
 	position: relative;
 	margin: 3rem auto;
@@ -60,7 +60,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.85);
 	transition: opacity 0ms;
 	visibility: hidden;
 	opacity: 0;
@@ -83,7 +83,7 @@
 
 .banner__middle-content {
 	border: 3px solid #086522;
-	border-radius: 25px;
+	border-radius: 5px;
 	h4 {
 		font-size: 2rem;
 		margin: 1em;
@@ -102,4 +102,13 @@
 		font-weight: 600;
 	}
 	margin-top: 7em;
+}
+
+.card-img {
+	border: navy 3px solid;
+}
+
+.event {
+	border: 3px solid #086522;
+	border-radius: 5px;
 }

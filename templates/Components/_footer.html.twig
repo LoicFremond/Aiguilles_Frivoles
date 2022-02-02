@@ -1,77 +1,77 @@
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3 footer mt-lg-5">
-				<div id="logo">
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3 footer mt-lg-5">
+			<div id="logo">
 				<h2>
 					<a href="/">
-						<span>Les </span>Aiguilles Frivoles
+						<span>Les
+						</span>Aiguilles Frivoles
 					</a>
 				</h2>
 				<label class="logo__desc2">Dentelle Artisanale</label>
-				</div>
 			</div>
-			<div class="col-lg-3 footer mt-sm-4">
-				<ul class="footer__list">
-					<li>
+		</div>
+		<div class="col-lg-3 footer mt-sm-4">
+			<ul class="footer__list">
+				<li>
 					{% if app.user.id is defined %}
 						<a href="{{ path('profile', {'id': app.user.id}) }}">
 							<span class="fa fa-angle-right" aria-hidden="true"></span>
 							Profil</a>
-					{% else %}
+						{% else %}
 					{% endif %}
-					</li>
-					<li>
-						<a href="{{ path('categories') }}">
-							<span class="fa fa-angle-right" aria-hidden="true"></span>
-							Collections</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-lg-3 footer mt-sm-4">
-				<ul class="footer__list">
-					<li>
-						<a href="{{ path('contact') }}">
-							<span class="fa fa-angle-right" aria-hidden="true"></span>
-							Me Contacter</a>
-					</li>
-					<li>
-						<a href="about">
-							<span class="fa fa-angle-right" aria-hidden="true"></span>
-							Qui Suis-je ?</a>
-					</li>
-				</ul>
-			</div>
-			{% if app.user %}
-			{% else %}
-			<div class="col-lg-3 footer mt-sm-4">
-				<ul class="footer__list">
-					<li>
-						<a href="{{ path('login') }}">
-							<span class="fa fa-angle-right" aria-hidden="true"></span>
-							Se connecter
-						</a>
-					</li>
-					<li>
-						<a href="{{ path('register') }}">
-							<span class="fa fa-angle-right" aria-hidden="true"></span>
-							S'enregistrer</a>
-					</li>
-				</ul>
-			</div>
-			{% endif %}
+				</li>
+				<li>
+					<a href="{{ path('categories') }}">
+						<span class="fa fa-angle-right" aria-hidden="true"></span>
+						Collections</a>
+				</li>
+			</ul>
 		</div>
-		<div class="footer__social">
-			<h3>Me suivre</h3>
-			<div class="footer__social-icons">
-				<ul>
-					<li><a href="https://www.facebook.com/Xinty3140" target="_blank"><span class="fa fa-facebook"></span>Facebook</a></li>
-				</ul>
-			</div>
-			<p class="mt-3">© 2022, Les Aiguilles Frivoles. Site réalisé par <a href="http://loicfremond-portfolio.eu/">L. Fremond</a></p>
+		<div class="col-lg-3 footer mt-sm-4">
+			<ul class="footer__list">
+				<li>
+					<a href="{{ path('contact') }}">
+						<span class="fa fa-angle-right" aria-hidden="true"></span>
+						Me Contacter</a>
+				</li>
+				<li>
+					<a href="about">
+						<span class="fa fa-angle-right" aria-hidden="true"></span>
+						Qui Suis-je ?</a>
+				</li>
+			</ul>
 		</div>
-		<div class="move-top text-center mt-lg-4">
-			<a href="#main">
-				<span class="fa fa-angle-double-up" aria-hidden="true"></span>
-			</a>
+		<div class="col-lg-3 footer mt-sm-4">
+			<ul class="footer__list">
+				<li>
+					<a href="{{ path('login') }}">
+						<span class="fa fa-angle-right" aria-hidden="true"></span>
+						Se connecter
+					</a>
+				</li>
+				<li>
+					<a href="{{ path('register') }}">
+						<span class="fa fa-angle-right" aria-hidden="true"></span>
+						S'enregistrer</a>
+				</li>
+			</ul>
 		</div>
 	</div>
+	<div class="footer__social">
+		<h3>Me suivre</h3>
+		<div class="footer__social-icons">
+			<ul>
+				<li><a href="https://www.facebook.com/Xinty3140" target="_blank"><span class="fa fa-facebook"></span>Facebook</a></li>
+			</ul>
+		</div>
+		<p class="mt-3">© 2022, Les Aiguilles Frivoles. Site réalisé par
+			<a href="http://loicfremond-portfolio.eu/">L. Fremond</a>
+		</p>
+	</div>
+	<div class="move-top text-center mt-lg-4">
+		<a href="#main">
+			<span class="fa fa-angle-double-up" aria-hidden="true"></span>
+		</a>
+	</div>
+</div>

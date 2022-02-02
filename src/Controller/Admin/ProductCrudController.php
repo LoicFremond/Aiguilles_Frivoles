@@ -29,7 +29,12 @@ class ProductCrudController extends AbstractCrudController
             TextareaField::new('description', 'Description'),
             BooleanField::new('status', 'Status'),
             ImageField::new('picture', 'Photo'),
-            AssociationField::new('category', 'Collection'),
+            TextField::new('material', 'Materiaux'),
+            TextField::new('gems', 'Gemme'),
+            TextField::new('size', 'Dimension'),
+            TextField::new('closing', 'Fermeture'),
+            AssociationField::new('category', 'Collection')
+            ->hideOnIndex(),
             SlugField::new('slug', 'Slug - Actualisation Automatique')
             ->hideOnIndex()
             ->setTargetFieldName('name'),
