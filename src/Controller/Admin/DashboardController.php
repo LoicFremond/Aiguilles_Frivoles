@@ -11,14 +11,13 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use EasyCorp\Bundle\EasyAdminBundle\Dto\MenuItemDto;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
     /**
-     * @Route("/Admin", name="admin")
+     * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
@@ -29,7 +28,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Les Aiguilles Frivoles')
-            ->setFaviconPath('../uploads/images/favicon.png');
+            ->setFaviconPath('/uploads/images/favicon.png');
     }
 
     public function configureMenuItems(): iterable

@@ -20,9 +20,11 @@ class MessagesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Nom'),
-            AssociationField::new('recipient', 'Destinataire'),
-            TextField::new('email', 'Email'),
+            TextField::new('name', 'Nom')
+            ->onlyOnForms(),
+            AssociationField::new('recipient', 'Destinataire')
+            ->onlyOnForms(),
+            TextField::new('email', 'Expéditeur'),
             TextField::new('phone', 'Téléphone'),
             TextareaField::new('message', 'Message'),
             DateTimeField::new('createdAt', 'Envoyé le')
