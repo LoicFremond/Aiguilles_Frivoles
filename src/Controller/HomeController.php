@@ -52,7 +52,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/Contact", name="contact")
+     * @Route("/contact", name="contact")
      * @param Request $request
      */
     public function contact(EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, Request $request)
@@ -84,7 +84,7 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("/Collection/{categorySlug}", name="category")
+     * @Route("/collection/{categorySlug}", name="category")
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
      * @param string             $categorySlug
      * @param CategoryRepository $categoryRepository
@@ -131,7 +131,7 @@ class HomeController extends AbstractController
         ]);
     }
     /**
-     * @Route("/Collections", name="categories")
+     * @Route("/collections", name="categories")
      */
     public function categories(CategoryRepository $categoryRepository): Response
     {
@@ -143,7 +143,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/Collection/{categorySlug}/{productSlug}", name="article")
+     * @Route("/collection/{categorySlug}/{productSlug}", name="article")
      * @ParamConverter("product", options={"mapping": {"productSlug": "slug"}})
      * @param Product $product
      */
@@ -164,6 +164,18 @@ class HomeController extends AbstractController
             'dataCart' => $cartDatas['data'],
             'total' => $cartDatas['total'],
             'product' => $product,
+            'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about(CategoryRepository $categoryRepository): Response
+    {
+        $categories = new Category;
+        $categories = $categoryRepository->findAll();
+        return $this->render('home/about.html.twig', [
             'categories' => $categories,
         ]);
     }
