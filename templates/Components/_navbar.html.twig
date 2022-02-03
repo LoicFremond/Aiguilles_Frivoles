@@ -22,7 +22,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					{% for category in categories %}
-						<a class="dropdown-item" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}</a>
+						<a class="dropdown-item position-relative" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}<span class="badge rounded-pill bg-secondary mx-2">
+								{{ category.product|length }}
+							</span>
+						</a>
 					{% endfor %}
 					<hr>
 					<a class="dropdown-item" disabled href="{{ path('categories') }}">Toutes les collections</a>
