@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Messages
 {
+
+  public function __construct()
+  {
+    $this->created_at = new \DateTimeImmutable();
+  }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -46,6 +51,11 @@ class Messages
      * @ORM\Column(type="datetime_immutable")
      */
     private $created_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="messages")
+     */
+    private $status;
 
     public function getId(): ?int
     {
@@ -117,10 +127,23 @@ class Messages
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(?\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
 }

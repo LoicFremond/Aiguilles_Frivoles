@@ -28,8 +28,7 @@ class OrderCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id', 'N° Commande')
-            ->hideOnForm(),
+            AssociationField::new('status', 'Status'),
             DateTimeField::new('createdAt', 'Commande passée le'),
             AssociationField::new('client', 'Client'),
             AssociationField::new('product', 'Article')
@@ -37,7 +36,6 @@ class OrderCrudController extends AbstractCrudController
             CollectionField::new('product', 'Article')
             ->onlyOnIndex(),
             MoneyField::new('price', 'Prix'),
-            AssociationField::new('status', 'Status'),
         ];
     }
 }

@@ -29,9 +29,15 @@ class Status
      */
     private $orders;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="status")
+     */
+    private $messages;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,5 +90,35 @@ class Status
     public function __toString()
     {
         return $this->getStatus();
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setStatus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getStatus() === $this) {
+                $message->setStatus(null);
+            }
+        }
+
+        return $this;
     }
 }

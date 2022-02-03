@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Messages;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -20,6 +21,7 @@ class MessagesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            AssociationField::new('status', 'Status'),
             TextField::new('name', 'Nom')
             ->onlyOnForms(),
             AssociationField::new('recipient', 'Destinataire')
@@ -28,6 +30,7 @@ class MessagesCrudController extends AbstractCrudController
             TextField::new('phone', 'Téléphone'),
             TextareaField::new('message', 'Message'),
             DateTimeField::new('createdAt', 'Envoyé le')
+            ->onlyOnIndex(),
         ];
     }
 

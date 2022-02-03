@@ -1,0 +1,13 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block main %}
+<div class="alert alert-danger mb-5 col-md-8 mx-auto">
+<p class="h2 text-center">Tu as {{ users|length }} comptes créés sur le site</p>
+</div>
+<div class="alert alert-danger my-5 col-md-8 mx-auto">
+<p class="h2 text-center">Tu as {{ orders|length }} nouvelle{% if orders|length > 1 %}s{% endif %} commande{% if orders|length > 1 %}s{% endif %}</p>
+</div>
+<div class="alert alert-danger my-5 col-md-8 mx-auto">
+<p class="h2 text-center">Tu as {{ messages|length }} nouveau{% if messages|length > 1 %}x{% endif %} message{% if messages|length > 1 %}s{% endif %}</p>
+</div>
+{% endblock %}

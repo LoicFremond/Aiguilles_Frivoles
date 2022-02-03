@@ -10,6 +10,7 @@ use App\Form\UserType;
 use App\Repository\CategoryRepository;
 use App\Repository\MessagesRepository;
 use App\Repository\OrderRepository;
+use App\Repository\StatusRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -51,6 +52,7 @@ class UserController extends AbstractController
             $user->setPassword($passwordEncoder->encodePassword(
                 $user,
                 $form->get('Password')->getData()));
+            $user->setRoles(['ROLE_USER']);
             $entityManager->persist($user);
             $entityManager->flush();
 

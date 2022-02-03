@@ -6,10 +6,12 @@ use App\Entity\Event;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\Messages;
+use App\Entity\Status;
 use App\Form\MessageType;
 use App\Repository\EventRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\StatusRepository;
 use App\Service\CartManager;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -52,10 +54,13 @@ class HomeController extends AbstractController
      * @Route("/contact", name="contact")
      * @param Request $request
      */
-    public function contact(EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, Request $request)
+    public function contact(StatusRepository $statusRepository, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, Request $request)
     {
         $date = new DateTimeImmutable();
         $message = new Messages();
+        /** @var Status $status */
+        $status = $statusRepository->findOneBy(['status' => 'En attente']);
+        $message->setStatus($status);
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);
 

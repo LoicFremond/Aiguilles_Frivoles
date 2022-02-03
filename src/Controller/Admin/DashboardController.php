@@ -34,6 +34,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
+            MenuItem::linkToRoute('Actualités', 'fas fa-rss-square', 'notif'),
             MenuItem::linkToRoute('Mon site', 'fa fa-home', 'home'),
             MenuItem::linkToDashboard('Dashboard', 'fas fa-tools'),
             MenuItem::section('Gestion du site'),
