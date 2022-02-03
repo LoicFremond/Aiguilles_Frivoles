@@ -7,10 +7,12 @@ use App\Entity\Order;
 use DateTimeImmutable;
 use App\Entity\Product;
 use App\Entity\Category;
+use App\Entity\Status;
 use App\Service\CartManager;
 use App\Service\OrderManager;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,7 +44,6 @@ class CartController extends AbstractController
         $session->set('cartTotal', $cartDatas['total']);
         $categories = new Category;
         $categories = $categoryRepository->findAll();
-
         return $this->render('cart/index.html.twig', [
             'dataCart' => $cartDatas['data'],
             'products' => $productRepository->findAll(),
@@ -125,6 +126,7 @@ class CartController extends AbstractController
         SessionInterface $session,
         CartManager $cartManager,
         OrderManager $orderManager,
+        StatusRepository $statusRepository,
         EntityManagerInterface $ema
     ): RedirectResponse {
 
@@ -134,6 +136,8 @@ class CartController extends AbstractController
         $data = $cartManager->getDatasFromCart($cart);
         $newCart = $orderManager->orderCartData($data);
         $newOrder = new Order();
+        /** @var Status $status */
+        $status = $statusRepository->findOneBy(['status' => 'En attente']);
         /** @var User $user */
         $user = $this->getUser();
         foreach ($newCart as $products) {
@@ -147,6 +151,7 @@ class CartController extends AbstractController
                 $ema->persist($product);
             }
         }
+        $newOrder->setStatus($status);
         $newOrder->setCreatedAt($date);
         $newOrder->setPrice($data['total']);
         $ema->flush();

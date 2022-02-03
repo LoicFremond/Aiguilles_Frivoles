@@ -40,6 +40,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Articles', 'fas fa-gem', Product::class),
             MenuItem::linkToCrud('Collections', 'fas fa-copyright', Category::class),
             MenuItem::linkToCrud('Gérer les commandes', 'fas fa-shopping-cart', Order::class),
+            MenuItem::linkToRoute('Commandes', 'fas fa-shopping-cart', 'order'),
             MenuItem::linkToCrud('Gérer les évènements', 'fas fa-calendar-alt', Event::class),
             MenuItem::section('Utilisateurs'),
             MenuItem::linkToCrud('Utilisateurs', 'fas fa-dizzy', User::class),

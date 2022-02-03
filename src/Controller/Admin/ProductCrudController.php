@@ -27,16 +27,13 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name', 'Nom'),
             MoneyField::new('price', 'Prix'),
             TextareaField::new('description', 'Description'),
-            BooleanField::new('status', 'Disponible'),
+            BooleanField::new('status', 'Dispo'),
             ImageField::new('picture', 'Photo'),
             TextField::new('material', 'Materiaux'),
             TextField::new('gems', 'Gemmes'),
-            TextField::new('gems2', 'Gemmes')
-            ->hideOnIndex(),
-            TextField::new('size', 'Dimension')
-            ->hideOnIndex(),
-            TextField::new('closing', 'Fermeture')
-            ->hideOnIndex(),
+            TextField::new('gems2', 'Gemmes'),
+            TextField::new('size', 'Dimension'),
+            TextField::new('closing', 'Fermeture'),
             AssociationField::new('category', 'Collection'),
             SlugField::new('slug', 'Slug - Actualisation Automatique')
             ->hideOnIndex()

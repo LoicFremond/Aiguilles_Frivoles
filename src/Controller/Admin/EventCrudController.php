@@ -25,7 +25,7 @@ class EventCrudController extends AbstractCrudController
             TextField::new('postalCode', 'Code Postal'),
             TextField::new('city', 'Ville'),
             TextField::new('description', 'Description'),
-            BooleanField::new('status', 'Status'),
+            BooleanField::new('status', 'Actif'),
         ];
     }
 }
