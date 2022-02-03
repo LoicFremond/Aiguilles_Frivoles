@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class OrderCrudController extends AbstractCrudController
 {
@@ -36,6 +37,7 @@ class OrderCrudController extends AbstractCrudController
             CollectionField::new('product', 'Article')
             ->onlyOnIndex(),
             MoneyField::new('price', 'Prix'),
+            AssociationField::new('status', 'Status'),
         ];
     }
 }

@@ -5,8 +5,8 @@
 
 {% block body %}
 
-	<h1 class="my-5 text-center">Mes Collections</h1>
 	<a class="btn shop" href="{{ path('home') }}">Retour</a>
+	<h1 class="my-5 text-center">Mes Collections</h1>
 	<div class="container d-flex flex-wrap">
 		{% for category in categories|sort((a, b) => a.name <=> b.name) %}
 			<div class="card text-center mt-5 mx-auto col-md-5">

@@ -40,6 +40,11 @@ class Order
      */
     private $Created_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="orders")
+     */
+    private $status;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -106,6 +111,18 @@ class Order
     public function setCreatedAt(\DateTimeImmutable $Created_at): self
     {
         $this->Created_at = $Created_at;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
