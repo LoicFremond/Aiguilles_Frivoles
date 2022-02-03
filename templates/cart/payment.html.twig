@@ -55,8 +55,24 @@
                         unit_amount : { value : {{ dataCart[3].product.price }}, currency_code : "EUR" }
                     },
                     {% endif %}
+                    {% if dataCart[4] is defined %}
+                    {
+                        name : "{{ dataCart[4].product.name }}",
+                        description : "{{ dataCart[4].product.description }}",
+                        quantity : 1,
+                        unit_amount : { value : {{ dataCart[4].product.price }}, currency_code : "EUR" }
+                    },
+                    {% endif %}
+                    {% if dataCart[5] is defined %}
+                    {
+                        name : "{{ dataCart[5].product.name }}",
+                        description : "{{ dataCart[5].product.description }}",
+                        quantity : 1,
+                        unit_amount : { value : {{ dataCart[5].product.price }}, currency_code : "EUR" }
+                    },
+                    {% endif %}
                     // Frais de port offert si 2 articles ou plus
-                    {% if dataCart[1] is not defined %}
+                    {% if total < 50 %}
                     {
                         name : "Frais de Port",
                         description : "Livraison à domicile",

@@ -14,7 +14,7 @@
 		<div class="navbar-nav mx-auto">
 			<a class="nav-item nav-link ml-md-3 mx-2" href="{{ path('about') }}">
 				<i class="fas fa-question"></i>
-				Qui Suis-Je</a>
+				Ma Frivolité</a>
 			<li class="nav-item dropdown mx-2">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					<i class="fas fa-tags"></i>
@@ -36,10 +36,13 @@
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				{% if app.user is defined %}
 					<div class="{{ app.request.attributes.get('_route') == 'cart_index' }}">
-						<a class="customer_menu_item" href={{ path('cart_index') }}>
+						<a class="customer_menu_item position-relative" href={{ path('cart_index') }}>
 							<span class="cart badge badge-pill">{{ app.session.get('cartTotal')|number_format(2) }}€</span>
 							<span>
 								<i class="fas fa-shopping-cart"></i>
+							</span>
+							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+								{{ app.session.get('cart')|length }}
 							</span>
 						</a>
 					</div>

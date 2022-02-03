@@ -142,7 +142,9 @@ class CartController extends AbstractController
                 $newOrder->setPrice($product->getPrice());
                 $newOrder->getId($newOrder);
                 $newOrder->setClient($user);
+                $product->setStatus(0);
                 $ema->persist($newOrder);
+                $ema->persist($product);
             }
         }
         $newOrder->setCreatedAt($date);

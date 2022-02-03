@@ -91,9 +91,17 @@ class HomeController extends AbstractController
     public function showByCategory(
         string $categorySlug,
         CategoryRepository $categoryRepository,
+        SessionInterface $session,
+        CartManager $cartManager,
         ProductRepository $productRepository
     ): Response
     {
+        /** @var array $cart */
+        $cart = $session->get("cart", []);
+
+        $cartDatas = $cartManager->getDatasFromCart($cart);
+
+        $session->set('cartTotal', $cartDatas['total']);
         $categories = new Category;
         $categories = $categoryRepository->findAll();
         if (!$categorySlug) {
@@ -125,6 +133,8 @@ class HomeController extends AbstractController
             'selectByCategory' => $selectByCategory,
             'category' => $category,
             'categories' => $categories,
+            'dataCart' => $cartDatas['data'],
+            'total' => $cartDatas['total'],
         ]);
     }
     /**
