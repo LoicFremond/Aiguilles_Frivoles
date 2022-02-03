@@ -5,28 +5,29 @@
 {% endblock %}
 
 {% block body %}
-        {% block flash_messages %}
-            {{ include('@EasyAdmin/flash_messages.html.twig') }}
-        {% endblock flash_messages %}
-	<h1 class="mb-lg-5 mb-4 text-center">Panier</h1>
+	{% block flash_messages %}
+		{{ include('@EasyAdmin/flash_messages.html.twig') }}
+	{% endblock flash_messages %}
+	<a class="btn shop" href="javascript:history.go(-1)">Retour</a>
+	<h1 class="mb-4 text-center">Panier</h1>
 	<div class="cart d-flex flex-wrap my-5">
 		{% for element in dataCart %}
-		<a href="{{ path('article', {'categorySlug' : element.product.category.slug , 'productSlug': element.product.slug}) }}">
-			<div class="card col-md-2 mx-auto mt-3">
-				<div class="card-header">
-					<h2 class="text-center">{{ element.product.name }}</h2>
+			<a href="{{ path('article', {'categorySlug' : element.product.category.slug , 'productSlug': element.product.slug}) }}">
+				<div class="card col-md-2 mx-auto mt-3">
+					<div class="card-header alert alert-danger">
+						<h2 class="text-center">{{ element.product.name }}</h2>
+					</div>
+					<div class="card-body text-center">
+						<p class="mb-2">{{ element.product.price|number_format(2) }}€</p>
+						<img class="card-img" src="{{ element.product.picture }}" alt="{{ element.product.name }}">
+						<p class="d-none d-md-block mt-2">{{ element.product.description }}</p>
+					</div>
+					<div class="card-footer text-center">
+						<a href="{{ path("cart_delete", {'id': element.product.id}) }}">
+							<i class="fas fa-trash"></i>
+						</a>
+					</div>
 				</div>
-				<div class="card-body text-center">
-					<p class="mb-2">{{ element.product.price|number_format(2) }}€</p>
-					<img class="card-img" src="{{ element.product.picture }}" alt="{{ element.product.name }}">
-					<p class="d-none d-md-block mt-2">{{ element.product.description }}</p>
-				</div>
-				<div class="card-footer text-center">
-					<a href="{{ path("cart_delete", {'id': element.product.id}) }}">
-						<i class="fas fa-trash"></i>
-					</a>
-				</div>
-			</div>
 			</a>
 		{% else %}
 			<div>
@@ -41,10 +42,9 @@
 					{{ total|number_format(2) }}€</h2>
 			</div>
 			<div class="mx-auto">
-					<a class="btn shop m-2" href="{{ path("cart_delete_all") }}">Vider le Panier</a>
-					<a class="btn shop m-2" href="{{ path("cart_basket") }}">Valider le Panier</a>
+				<a class="btn shop m-2" href="{{ path("cart_delete_all") }}">Vider le Panier</a>
+				<a class="btn shop m-2" href="{{ path("cart_basket") }}">Valider le Panier</a>
 			</div>
 		</div>
 	{% endif %}
-</div>
-{% endblock %}
+</div>{% endblock %}

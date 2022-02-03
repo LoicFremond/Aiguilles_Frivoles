@@ -44,9 +44,38 @@
 					</h3>
 					<a href="{{ path('categories') }}" class="btn shop">Voir les collections</a>
 				</div>
-				<div class="col-lg-5 mt-3">
-					<img src="https://i.ibb.co/R4CNLTb/IMG-20220122-101527.jpg" alt="Les Aiguilles Frivoles" class="img-fluid">
-				</div>
+				<div id="carousel" class="carousel slide col-md-5" data-bs-ride="carousel">
+  <div class="carousel-inner mt-3">
+    <div class="carousel-item active">
+      <img src="https://i.ibb.co/R4CNLTb/IMG-20220122-101527.jpg" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/uploads/images/54730655_575352242963414_803641174819602432_n.jpg" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/uploads/images/54436547_575426722955966_9021688868079927296_n.jpg" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/uploads/images/54218311_575426856289286_4437268685027016704_n.jpg" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Précédent</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Suivant</span>
+  </button>
+</div>
 			</div>
 		</div>
 	</head>
@@ -54,19 +83,19 @@
 <section class="py-5">
 	<div class="container py-md-3 banner__middle">
 		<div class="row text-center">
-			<div class="col-lg-3 banner__middle-content mx-auto">
+			<div class="col-lg-3 banner__middle-content mx-auto mt-2">
 				<div class="banner__middle-content--info">
 					<h4>Fait à la main</h4>
 					<p class="pb-2 mb-2">Tous mes articles sont créés par moi même. Se sont tous des articles uniques.</p>
 				</div>
 			</div>
-			<div class="col-lg-5 banner__middle-content mx-auto">
+			<div class="col-lg-5 banner__middle-content mx-auto mt-2">
 				<div class="banner__middle-content--info">
 					<h4>Livraison ou Récupération sur place</h4>
 					<p class="pb-2 mb-2">Pour la récupération sur place les prix ne change pas, Par contre pour la livraison il y aura 2.89€ de frais de port compris. Livraison à domicile par La Poste</p>
 				</div>
 			</div>
-			<div class="col-lg-3 banner__middle-content mx-auto">
+			<div class="col-lg-3 banner__middle-content mx-auto mt-2">
 				<div class="banner__middle-content--info">
 					<h4>Achat de lot</h4>
 					<p class="pb-2 mb-2">Lors d'un achat de 3 articles ou plus, les frais de port sont offerts</p>
@@ -84,7 +113,7 @@
 		<div class="col-lg-8">
 			<div class="row">
 				{% for product in products %}
-					<div class="col-md-2">
+					<div class="col-3">
 						<a href="#{{ product.id }}"><img src="{{ product.picture }}" alt="" class="card-img mt-4"></a>
 					</div>
 					<div id="{{ product.id }}" class="popup__content">

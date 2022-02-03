@@ -10,15 +10,13 @@
 	<div class="container d-flex flex-wrap">
 		{% for category in categories|sort((a, b) => a.name <=> b.name) %}
 			<div class="card text-center mt-5 mx-auto col-md-5">
-				<div class="card-header">
+				<div class="card-header alert alert-danger">
 					<h2 class="card-title">{{ category.name }}</h2>
 				</div>
 				<div class="card-body">
 					<p class="card-text">Il y a actuellement
 						{{ category.product|length }}
-						article
-						{% if category.product|length > 1 %}s
-						{% endif %}
+						article{% if category.product|length > 1 %}s{% endif %}
 						dans la collection
 						{{ category.name }}</p>
 				</div>
