@@ -1,15 +1,19 @@
 #logo {
 	a {
+		color: #E6EBE0;
+		font-family: 'Parisienne', cursive;
+		text-shadow: 2px 2px 5px #000000;
 		float: left;
 		font-size: .8em;
 		display: initial;
 		margin: 0;
 		letter-spacing: 0px;
-		font-weight: 300;
+		font-weight: 700;
 		padding: 3px 0;
 		border: none;
 		span {
 			color: #E6EBE0;
+			font-family: 'Parisienne', cursive;
 			font-size: 1.4em;
 			font-weight: 700;
 			text-shadow: 2px 2px 5px #000000;
@@ -36,4 +40,18 @@
 .cart {
 	color: black;
 	font-size: 1.2rem;
+}
+
+.navbar {
+	border-bottom: 1px solid #086522;
+	a {
+		font-family: 'Roboto', sans-serif;
+		color: #E6EBE0;
+		text-shadow: 1px 1px 1px #000000;
+	}
+	span {
+		font-family: 'Roboto', sans-serif;
+		color: #E6EBE0;
+		text-shadow: 1px 1px 1px #000000;
+	}
 }

@@ -27,4 +27,3 @@ $(document).ready(() => {
     $('.toast').toast({delay: 2500});
     $('.toast').toast('show');
 });
-

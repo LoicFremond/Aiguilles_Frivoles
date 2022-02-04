@@ -7,9 +7,9 @@
 
 {% block body %}
 	<div class="container-fluid position-relative">
-		<a class="btn shop" href="javascript:history.go(-1)">Retour</a>
-		<h1 class="mb-5 text-center">{{ product.name }}</h1>
-		<div class="d-flex flex-wrap">
+		<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h2"></i></a>
+		<h1 class="mb-3 text-center">{{ product.name }}</h1>
+		<div class="d-flex flex-wrap mx-5">
 			<img src="{{ product.picture }}" class="product__img" alt="{{ product.name }}">
 			<div class="mx-5 my-auto">
 				<p>Description :
@@ -41,7 +41,7 @@
 				{{ product.price }}€ + Frais de port</p>
 						{% for element in dataCart %}
 							{% if element.product.id == product.id %}
-								<p class="btn rupt position-absolute">Déjà dans le panier</p>
+								<a class="btn rupt position-absolute" href="{{ path('cart_delete', {'id': product.id}) }}">Supprimer du panier</a>
 							{% endif %}
 						{% endfor %}
 							{% if product.status == true %}
