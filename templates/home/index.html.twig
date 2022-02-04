@@ -44,7 +44,7 @@
 			<p>Ici vous trouverez les articles nouvellement fabriqués et disponibles.</p>
 		</div>
 		<div class="col-lg-12">
-			<div class="d-md-flex flex-row overflow-auto behavior-auto col-md-11 mx-auto" id="carousel">
+			<div class="d-md-flex flex-row overflow-auto col-md-11 mx-auto">
 				{% for product in products %}
 					<div class=" col-md-3 col-sm-6 mx-1">
 						<a href="#{{ product.id }}"><img src="{{ product.picture }}" class="card-img mt-4"></a>
