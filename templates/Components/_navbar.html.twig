@@ -22,7 +22,7 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					{% for category in categories|sort((a, b) => a.name <=> b.name) %}
-						<a class="dropdown-item position-relative" style="color: black; text-shadow: none;" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}<span class="badge rounded-pill bg-success mx-2">
+						<a class="dropdown-item position-relative" style="color: black; text-shadow: none;" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}<span class="badge rounded-pill bg-secondary mx-2">
 								{{ category.product|length }}
 							</span>
 						</a>
@@ -74,10 +74,10 @@
 			</div>
 		{% endif %}
 	{% else %}
-		<a class="nav-item nav-link" href="{{ path('login') }}">
+		<a class="nav-item nav-link" style="color: white;" href="{{ path('login') }}">
 			<i class="fas fa-sign-in-alt"></i>
 			Se connecter</a>
-		<a class="nav-item nav-link" href="{{ path('register') }}">
+		<a class="nav-item nav-link" style="color: white;" href="{{ path('register') }}">
 			<i class="fas fa-user-plus"></i>
 			S'enregistrer</a>
 	{% endif %}
