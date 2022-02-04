@@ -114,30 +114,15 @@ class HomeController extends AbstractController
         $session->set('cartTotal', $cartDatas['total']);
         $categories = new Category;
         $categories = $categoryRepository->findAll();
-        if (!$categorySlug) {
-            throw $this
-                ->createNotFoundException('Pas de collection trouvée.');
-        }
 
         $category = $categoryRepository->findOneBy(
             ['slug' => mb_strtolower($categorySlug)]
         );
 
-        if (!$category) {
-            throw $this->createNotFoundException(
-                'La collection n\'existe pas ou a été supprimée.'
-            );
-        }
-
         $selectByCategory = $productRepository->findBy(
-            ['category' => $category]
+            ['category' => $category],
+            ['status' => 'DESC']
         );
-
-        if (!$category) {
-            throw $this->createNotFoundException(
-                'La collection n\'existe pas ou a été supprimée.'
-            );
-        }
 
         return $this->render('home/category.html.twig', [
             'selectByCategory' => $selectByCategory,

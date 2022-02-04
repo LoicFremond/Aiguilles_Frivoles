@@ -110,7 +110,7 @@ class CartController extends AbstractController
             $session->set("cart", $cart);
         }
 
-        return $this->redirectToRoute("cart_index");
+        return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
     /**

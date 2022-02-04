@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #03a030;" id="main">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008d4b;" id="main">
 	<div class="mx-3" id="logo">
 		<h1>
 			<a href="/">
@@ -54,7 +54,7 @@
 							<i class="profile__menu far fa-user-circle"></i>
 						</a>
 						<ul class="dropdown-menu">
-							{% if app.user.roles[0] == "ROLE_ADMIN" %}
+							{% if app.user.roles[0] == "ROLE_USER" %}
 								<a class="dropdown-item" style="color: black; text-shadow: none;" href="{{ path('profile', {'id': app.user.id}) }}">
 									<i class="fas fa-user mx-2" style="color: black; text-shadow: none;"></i>Profil</a>
 								<a class="dropdown-item" style="color: black; text-shadow: none;" href="{{ path('messages', {'id': app.user.id}) }}">

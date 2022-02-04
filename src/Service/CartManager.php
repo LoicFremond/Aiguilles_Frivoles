@@ -24,7 +24,6 @@ class CartManager
     {
         $total = 0;
         $dataCart = [];
-        $quantity = 1;
         foreach ($cart as $productId => $quantity) {
             /** @var Product $product */
             $product = $this->productRepository->find($productId);

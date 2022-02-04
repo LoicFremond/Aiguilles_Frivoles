@@ -13,7 +13,7 @@
 	<div class="cart d-flex flex-wrap my-5">
 		{% for element in dataCart %}
 			<a href="{{ path('article', {'categorySlug' : element.product.category.slug , 'productSlug': element.product.slug}) }}">
-				<div class="card col-md-2 mx-auto mt-3">
+				<div class="card col-md-3 mx-auto mt-3">
 					<div class="card-header alert alert-danger">
 						<h2 class="text-center">{{ element.product.name }}</h2>
 					</div>
