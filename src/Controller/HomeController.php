@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Service\GetCategory;
 use App\Entity\Event;
 use App\Entity\Product;
@@ -38,13 +37,15 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(SessionInterface $session, CartManager $cartManager, ProductRepository $productRepository, EventRepository $eventRepository): Response
-    {
+    public function index(
+        SessionInterface $session,
+        CartManager $cartManager,
+        ProductRepository $productRepository,
+        EventRepository $eventRepository
+    ): Response {
         /** @var array $cart */
         $cart = $session->get("cart", []);
-
         $cartDatas = $cartManager->getDatasFromCart($cart);
-
         $session->set('cartTotal', $cartDatas['total']);
         $event = new Event;
         $event = $eventRepository->findBy(['status' => 1]);
@@ -63,8 +64,11 @@ class HomeController extends AbstractController
      * @Route("/contact", name="contact")
      * @param Request $request
      */
-    public function contact(StatusRepository $statusRepository, EntityManagerInterface $entityManager, Request $request)
-    {
+    public function contact(
+        StatusRepository $statusRepository,
+        EntityManagerInterface $entityManager,
+        Request $request
+    ) {
         $date = new DateTimeImmutable();
         $message = new Messages();
         /** @var Status $status */
@@ -89,7 +93,6 @@ class HomeController extends AbstractController
 
     }
 
-
     /**
      * @Route("/collection/{categorySlug}", name="category")
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
@@ -107,9 +110,7 @@ class HomeController extends AbstractController
     {
         /** @var array $cart */
         $cart = $session->get("cart", []);
-
         $cartDatas = $cartManager->getDatasFromCart($cart);
-
         $session->set('cartTotal', $cartDatas['total']);
         $categories = new Category;
         $categories = $categoryRepository->findAll();
@@ -146,6 +147,7 @@ class HomeController extends AbstractController
             'total' => $cartDatas['total'],
         ]);
     }
+
     /**
      * @Route("/collections", name="categories")
      */
@@ -161,13 +163,15 @@ class HomeController extends AbstractController
      * @ParamConverter("product", options={"mapping": {"productSlug": "slug"}})
      * @param Product $product
      */
-    public function showArticle(SessionInterface $session, CartManager $cartManager, ProductRepository $productRepository, Product $product): Response
-    {
+    public function showArticle(
+        SessionInterface $session,
+        CartManager $cartManager,
+        ProductRepository $productRepository,
+        Product $product
+    ): Response {
         /** @var array $cart */
         $cart = $session->get("cart", []);
-
         $cartDatas = $cartManager->getDatasFromCart($cart);
-
         $session->set('cartTotal', $cartDatas['total']);
         $product = $productRepository->findOneBy(
             ['id' => $product]

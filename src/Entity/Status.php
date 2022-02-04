@@ -71,7 +71,6 @@ class Status
             $this->orders[] = $order;
             $order->setStatus($this);
         }
-
         return $this;
     }
 
@@ -83,7 +82,6 @@ class Status
                 $order->setStatus(null);
             }
         }
-
         return $this;
     }
 
@@ -106,7 +104,6 @@ class Status
             $this->messages[] = $message;
             $message->setStatus($this);
         }
-
         return $this;
     }
 
@@ -118,7 +115,6 @@ class Status
                 $message->setStatus(null);
             }
         }
-
         return $this;
     }
 }

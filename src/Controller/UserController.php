@@ -2,16 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
 use App\Entity\Messages;
 use App\Entity\Order;
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\CategoryRepository;
 use App\Repository\MessagesRepository;
 use App\Repository\OrderRepository;
 use App\Service\GetCategory;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,24 +29,16 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/", name="user_index", methods={"GET"})
-     * @param UserRepository $userRepository
-     * @return Response
-     */
-    public function index(UserRepository $userRepository): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/inscription", name="register", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */
-    public function new(EntityManagerInterface $entityManager, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
+    public function new(
+        EntityManagerInterface $entityManager,
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder
+    ): Response {
+
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -80,8 +69,12 @@ class UserController extends AbstractController
      * @param User    $user
      * @return Response
      */
-    public function edit(EntityManagerInterface $entityManager, Request $request, User $user): Response
-    {
+    public function edit(
+        EntityManagerInterface $entityManager,
+        Request $request,
+        User $user
+    ): Response {
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -104,8 +97,12 @@ class UserController extends AbstractController
      * @param User    $user
      * @return Response
      */
-    public function delete(EntityManagerInterface $entityManager, Request $request, User $user): Response
-    {
+    public function delete(
+        EntityManagerInterface $entityManager,
+        Request $request,
+        User $user
+    ): Response {
+
         if ($this->isCsrfTokenValid('Delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
@@ -121,8 +118,11 @@ class UserController extends AbstractController
      * @param User    $user
      * @return Response
      */
-    public function messages(User $user, MessagesRepository $messagesRepository): Response
-    {
+    public function messages(
+        User $user,
+        MessagesRepository $messagesRepository
+    ): Response {
+
         $id = $user->getId();
         $messages = new Messages;
         $messages = $messagesRepository->findBy(
@@ -141,8 +141,11 @@ class UserController extends AbstractController
      * @Route("/profil/{id}/commandes", name="orders")
      * @ParamConverter("user", options={"mapping": {"id": "id"}})
      */
-    public function showOrder(OrderRepository $orderRepository, User $user): Response
-    {
+    public function showOrder(
+        OrderRepository $orderRepository,
+        User $user
+        ): Response {
+
         $id = $user->getId();
         $orders = new Order();
         $orders = $orderRepository->findBy(

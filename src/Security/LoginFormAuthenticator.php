@@ -4,8 +4,6 @@ namespace App\Security;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -63,7 +61,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             Security::LAST_USERNAME,
             $credentials['email']
         );
-
         return $credentials;
     }
 
@@ -80,7 +77,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email non trouvé.');
         }
-
         return $user;
     }
 
@@ -105,10 +101,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        // throw new Exception('TODO: provide a valid redirect inside '.__FILE__);
-        // redirect to some "app_homepage" route - of wherever you want
-
         if (in_array('ROLE_ADMIN', $token->getUser()->getRoles())) {
             return new RedirectResponse("https://localhost:8000/admin?menuIndex=0&routeName=notif&signature=vV3kYc_swqyix12io_4wvcPOBbdEsmYGsdGECIrjqUA&submenuIndex=-1");
         } elseif (in_array('ROLE_USER', $token->getUser()->getRoles())) {
@@ -122,6 +114,4 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-
-
 }

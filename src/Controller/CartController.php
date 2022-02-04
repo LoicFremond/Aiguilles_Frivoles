@@ -6,12 +6,10 @@ use App\Entity\User;
 use App\Entity\Order;
 use DateTimeImmutable;
 use App\Entity\Product;
-use App\Entity\Category;
 use App\Entity\Status;
 use App\Service\CartManager;
 use App\Service\OrderManager;
 use App\Repository\ProductRepository;
-use App\Repository\CategoryRepository;
 use App\Repository\StatusRepository;
 use App\Service\GetCategory;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,6 +43,7 @@ class CartController extends AbstractController
         ProductRepository $productRepository,
         CartManager $cartManager
     ): Response {
+
         /** @var array $cart */
         $cart = $session->get("cart", []);
         $cartDatas = $cartManager->getDatasFromCart($cart);
@@ -70,6 +69,7 @@ class CartController extends AbstractController
         SessionInterface $session,
         CartManager $cartManager
     ): Response {
+
         /** @var array $cart */
         $cart = $session->get("cart", []);
         /** @var int $id */
@@ -95,8 +95,11 @@ class CartController extends AbstractController
      * @param Product $product
      * @return Response A response instance
      */
-    public function delete(Product $product, SessionInterface $session): Response
-    {
+    public function delete(
+        Product $product,
+        SessionInterface $session
+    ): Response {
+
         $cart = $session->get("cart", []);
         /** @var int $id */
         $id = $product->getId();
@@ -115,8 +118,10 @@ class CartController extends AbstractController
      * @param SessionInterface $session
      * @return Response A response instance
      */
-    public function deleteAll(SessionInterface $session): Response
-    {
+    public function deleteAll(
+        SessionInterface $session
+    ): Response {
+
         $session->set("cart", []);
 
         return $this->redirectToRoute("home");
@@ -177,11 +182,10 @@ class CartController extends AbstractController
         ProductRepository $productRepository,
         CartManager $cartManager
     ): Response {
+
         /** @var array $cart */
         $cart = $session->get("cart", []);
-
         $cartDatas = $cartManager->getDatasFromCart($cart);
-
         $session->set('cartTotal', $cartDatas['total']);
 
         return $this->render('cart/payment.html.twig', [
@@ -198,6 +202,7 @@ class CartController extends AbstractController
     public function finish(
         SessionInterface $session
     ): Response {
+
         $session->set("cart", []);
 
         return $this->redirectToRoute('home');

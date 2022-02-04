@@ -70,7 +70,6 @@ class Category
             $this->product[] = $product;
             $product->setCategory($this);
         }
-
         return $this;
     }
 
@@ -82,7 +81,6 @@ class Category
                 $product->setCategory(null);
             }
         }
-
         return $this;
     }
 

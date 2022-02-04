@@ -3,18 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Form\UserType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -22,7 +15,6 @@ class UserCrudController extends AbstractCrudController
     {
         return User::class;
     }
-
 
     public function configureFields(string $pageName): iterable
     {
@@ -37,5 +29,4 @@ class UserCrudController extends AbstractCrudController
             ArrayField::new('roles'),
         ];
     }
-
 }

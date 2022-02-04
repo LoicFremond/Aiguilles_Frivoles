@@ -40,5 +40,4 @@ class ProductCrudController extends AbstractCrudController
             ->setTargetFieldName('name'),
         ];
     }
-
 }

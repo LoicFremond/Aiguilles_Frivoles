@@ -19,8 +19,11 @@ class NotifController extends AbstractDashboardController
     /**
      * @Route("/admin/commandes", name="order")
      */
-    public function showOrder(CategoryRepository $categoryRepository, OrderRepository $orderRepository): Response
-    {
+    public function showOrder(
+        CategoryRepository $categoryRepository,
+        OrderRepository $orderRepository
+    ): Response {
+
         $categories = new Category;
         $categories = $categoryRepository->findAll();
         $orders = new Order();
@@ -31,11 +34,16 @@ class NotifController extends AbstractDashboardController
             'categories' => $categories,
         ]);
     }
+
     /**
      * @Route("/admin/notif", name="notif")
      */
-    public function notif(OrderRepository $orderRepository, MessagesRepository $messagesRepository, UserRepository $userRepository): Response
-    {
+    public function notif(
+        OrderRepository $orderRepository,
+        MessagesRepository $messagesRepository,
+        UserRepository $userRepository
+    ): Response {
+
         $users = new User();
         $users = $userRepository->findAll();
         $orders = new Order();

@@ -245,7 +245,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->orders[] = $order;
             $order->setClient($this);
         }
-
         return $this;
     }
 
@@ -257,7 +256,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setClient(null);
             }
         }
-
         return $this;
     }
 
@@ -292,7 +290,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->messages[] = $message;
             $message->setRecipient($this);
         }
-
         return $this;
     }
 
@@ -304,8 +301,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setRecipient($this);
             }
         }
-
         return $this;
     }
-
 }

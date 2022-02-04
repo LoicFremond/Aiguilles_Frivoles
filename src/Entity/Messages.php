@@ -145,5 +145,4 @@ class Messages
 
         return $this;
     }
-
 }
