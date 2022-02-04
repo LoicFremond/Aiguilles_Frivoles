@@ -13,6 +13,7 @@ use App\Service\OrderManager;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\StatusRepository;
+use App\Service\GetCategory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,9 +24,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/panier", name="cart_")
+ * @property array categories
  */
 class CartController extends AbstractController
 {
+
+    public function __construct(GetCategory $category)
+    {
+        $this->categories = $category->getCategory();
+    }
+
     /**
      * @Route("/", name="index", methods={"GET", "POST"})
      * @param SessionInterface $session
@@ -35,20 +43,17 @@ class CartController extends AbstractController
     public function index(
         SessionInterface $session,
         ProductRepository $productRepository,
-        CartManager $cartManager,
-        CategoryRepository $categoryRepository
+        CartManager $cartManager
     ): Response {
         /** @var array $cart */
         $cart = $session->get("cart", []);
         $cartDatas = $cartManager->getDatasFromCart($cart);
         $session->set('cartTotal', $cartDatas['total']);
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         return $this->render('cart/index.html.twig', [
             'dataCart' => $cartDatas['data'],
             'products' => $productRepository->findAll(),
             'total' => $cartDatas['total'],
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 
@@ -170,8 +175,7 @@ class CartController extends AbstractController
     public function payment(
         SessionInterface $session,
         ProductRepository $productRepository,
-        CartManager $cartManager,
-        CategoryRepository $categoryRepository
+        CartManager $cartManager
     ): Response {
         /** @var array $cart */
         $cart = $session->get("cart", []);
@@ -180,13 +184,11 @@ class CartController extends AbstractController
 
         $session->set('cartTotal', $cartDatas['total']);
 
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         return $this->render('cart/payment.html.twig', [
             'dataCart' => $cartDatas['data'],
             'products' => $productRepository->findAll(),
             'total' => $cartDatas['total'],
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 

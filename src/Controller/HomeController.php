@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+
+use App\Service\GetCategory;
 use App\Entity\Event;
 use App\Entity\Product;
 use App\Entity\Category;
@@ -22,12 +24,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * @property array categories
+ */
 class HomeController extends AbstractController
 {
+
+    public function __construct(GetCategory $category)
+    {
+        $this->categories = $category->getCategory();
+    }
+
     /**
      * @Route("/", name="home")
      */
-    public function index(SessionInterface $session, CartManager $cartManager, ProductRepository $productRepository, CategoryRepository $categoryRepository, EventRepository $eventRepository): Response
+    public function index(SessionInterface $session, CartManager $cartManager, ProductRepository $productRepository, EventRepository $eventRepository): Response
     {
         /** @var array $cart */
         $cart = $session->get("cart", []);
@@ -37,13 +48,11 @@ class HomeController extends AbstractController
         $session->set('cartTotal', $cartDatas['total']);
         $event = new Event;
         $event = $eventRepository->findBy(['status' => 1]);
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         $products = new Product;
         $products = $productRepository->findProducts();
         return $this->render('home/index.html.twig', [
             'products' => $products,
-            'categories' => $categories,
+            'categories' => $this->categories,
             'event' => $event,
             'dataCart' => $cartDatas['data'],
             'total' => $cartDatas['total'],
@@ -54,7 +63,7 @@ class HomeController extends AbstractController
      * @Route("/contact", name="contact")
      * @param Request $request
      */
-    public function contact(StatusRepository $statusRepository, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, Request $request)
+    public function contact(StatusRepository $statusRepository, EntityManagerInterface $entityManager, Request $request)
     {
         $date = new DateTimeImmutable();
         $message = new Messages();
@@ -72,14 +81,10 @@ class HomeController extends AbstractController
             $this->addFlash('success', 'Votre message a été envoyé');
             return $this->redirectToRoute('home');
         }
-
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
-
         return $this->render('home/contact.html.twig', [
             'message' => $message,
             'form' => $form->createView(),
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
 
     }
@@ -89,7 +94,6 @@ class HomeController extends AbstractController
      * @Route("/collection/{categorySlug}", name="category")
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
      * @param string             $categorySlug
-     * @param CategoryRepository $categoryRepository
      * @param ProductRepository  $productRepository
      * @return Response
      */
@@ -145,12 +149,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/collections", name="categories")
      */
-    public function categories(CategoryRepository $categoryRepository): Response
+    public function categories(): Response
     {
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         return $this->render('home/categories.html.twig', [
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 
@@ -159,7 +161,7 @@ class HomeController extends AbstractController
      * @ParamConverter("product", options={"mapping": {"productSlug": "slug"}})
      * @param Product $product
      */
-    public function showArticle(SessionInterface $session, CartManager $cartManager, ProductRepository $productRepository, CategoryRepository $categoryRepository, Product $product): Response
+    public function showArticle(SessionInterface $session, CartManager $cartManager, ProductRepository $productRepository, Product $product): Response
     {
         /** @var array $cart */
         $cart = $session->get("cart", []);
@@ -167,8 +169,6 @@ class HomeController extends AbstractController
         $cartDatas = $cartManager->getDatasFromCart($cart);
 
         $session->set('cartTotal', $cartDatas['total']);
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         $product = $productRepository->findOneBy(
             ['id' => $product]
         );
@@ -176,19 +176,17 @@ class HomeController extends AbstractController
             'dataCart' => $cartDatas['data'],
             'total' => $cartDatas['total'],
             'product' => $product,
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 
     /**
      * @Route("/about", name="about")
      */
-    public function about(CategoryRepository $categoryRepository): Response
+    public function about(): Response
     {
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         return $this->render('home/about.html.twig', [
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 

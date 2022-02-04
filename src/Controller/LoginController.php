@@ -2,26 +2,30 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
-use App\Repository\CategoryRepository;
+use App\Service\GetCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * @property array categories
+ */
 class LoginController extends AbstractController
 {
+
+    public function __construct(GetCategory $category)
+    {
+        $this->categories = $category->getCategory();
+    }
     /**
      * @Route("/connexion", name="login")
      * @param AuthenticationUtils $authenticationUtils
-     * @param CategoryRepository  $categoryRepository
      * @return Response
      */
-    public function login(AuthenticationUtils $authenticationUtils, CategoryRepository $categoryRepository): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
 
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -35,7 +39,7 @@ class LoginController extends AbstractController
             'login/index.html.twig', [
                 'last_username' => $lastUsername,
                 'error' => $error,
-                'categories' => $categories,
+                'categories' => $this->categories,
             ]
         );
     }

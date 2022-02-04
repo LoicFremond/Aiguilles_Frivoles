@@ -10,7 +10,7 @@ use App\Form\UserType;
 use App\Repository\CategoryRepository;
 use App\Repository\MessagesRepository;
 use App\Repository\OrderRepository;
-use App\Repository\StatusRepository;
+use App\Service\GetCategory;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -20,8 +20,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @property array categories
+ */
 class UserController extends AbstractController
 {
+
+    public function __construct(GetCategory $category)
+    {
+        $this->categories = $category->getCategory();
+    }
 
     /**
      * @Route("/", name="user_index", methods={"GET"})
@@ -40,10 +48,8 @@ class UserController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function new(EntityManagerInterface $entityManager, Request $request, UserPasswordEncoderInterface $passwordEncoder, CategoryRepository $categoryRepository): Response
+    public function new(EntityManagerInterface $entityManager, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -63,7 +69,7 @@ class UserController extends AbstractController
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 
@@ -74,11 +80,8 @@ class UserController extends AbstractController
      * @param User    $user
      * @return Response
      */
-    public function edit(EntityManagerInterface $entityManager, Request $request, User $user, CategoryRepository $categoryRepository): Response
+    public function edit(EntityManagerInterface $entityManager, Request $request, User $user): Response
     {
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
-
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -91,7 +94,7 @@ class UserController extends AbstractController
         return $this->render('/user/profile.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 
@@ -118,11 +121,9 @@ class UserController extends AbstractController
      * @param User    $user
      * @return Response
      */
-    public function messages(User $user, CategoryRepository $categoryRepository, MessagesRepository $messagesRepository): Response
+    public function messages(User $user, MessagesRepository $messagesRepository): Response
     {
         $id = $user->getId();
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         $messages = new Messages;
         $messages = $messagesRepository->findBy(
             ['recipient' => $id],
@@ -131,7 +132,7 @@ class UserController extends AbstractController
 
         return $this->render('/user/messages.html.twig', [
             'user' => $user,
-            'categories' => $categories,
+            'categories' => $this->categories,
             'messages' => $messages,
         ]);
     }
@@ -140,10 +141,8 @@ class UserController extends AbstractController
      * @Route("/profil/{id}/commandes", name="orders")
      * @ParamConverter("user", options={"mapping": {"id": "id"}})
      */
-    public function showOrder(CategoryRepository $categoryRepository, OrderRepository $orderRepository, User $user): Response
+    public function showOrder(OrderRepository $orderRepository, User $user): Response
     {
-        $categories = new Category;
-        $categories = $categoryRepository->findAll();
         $id = $user->getId();
         $orders = new Order();
         $orders = $orderRepository->findBy(
@@ -152,7 +151,7 @@ class UserController extends AbstractController
 
         return $this->render('home/order.html.twig', [
             'orders' => $orders,
-            'categories' => $categories,
+            'categories' => $this->categories,
         ]);
     }
 }
