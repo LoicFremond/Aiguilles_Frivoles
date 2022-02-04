@@ -54,7 +54,7 @@
 							<i class="profile__menu far fa-user-circle"></i>
 						</a>
 						<ul class="dropdown-menu">
-							{% if app.user.roles[0] == "ROLE_USER" %}
+							{% if app.user.roles[0] == "ROLE_ADMIN" %}
 								<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}">
 									<i class="fas fa-user mx-2"></i>Profil</a>
 								<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}">

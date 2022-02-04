@@ -10,19 +10,19 @@
 		<a class="btn shop" href="javascript:history.go(-1)">Retour</a>
 		<h1 class="mb-lg-5 mb-4 text-center">Mes commandes
 		</h1>
+			<div class="accordion col-md-10 mx-auto my-5" id="accordion">
 		{% for order in orders|sort((a, b) => b.createdAt <=> a.createdAt) %}
-			<div class="accordion col-md-10 mx-5" id="accordion">
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="heading_{{ order.id }}">
 						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ order.id }}" aria-expanded="true" aria-controls="collapse_{{ order.id }}">
 							{% if order.status is defined %}
 							<span class="btn rupt mx-5">{{ order.status }}</span>
 							{% endif %}
-							<p class="h2 mx-auto">Commande du
+							<p class="h3 mx-auto">Commande du
 								{{ order.createdAt|format_datetime('full', 'none') }}</p>
 						</button>
 					</h2>
-					<div id="collapse_{{ order.id }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ order.id }}" data-bs-parent="#accordion">
+					<div id="collapse_{{ order.id }}" class="accordion-collapse collapse mb-5" aria-labelledby="heading_{{ order.id }}" data-bs-parent="#accordion">
 						<div class="accordion-body text-center">
 							<div class="d-flex flex-wrap">
 								<div class="mx-auto mt-2">
@@ -67,5 +67,6 @@
 				{% else %}
 					Aucune commande trouvé
 				{% endfor %}
+			</div>
 			</div>
 		{% endblock %}
