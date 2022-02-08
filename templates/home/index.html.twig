@@ -12,7 +12,7 @@
 	<head>
 		{% if event is not null %}
 		{% for event in event %}
-			<div class="event card text-center col-md-9 mx-auto my-5">
+			<div class="event card text-center col-lg-9 mx-auto my-5">
 				<div class="card-header alert alert-danger">
 					<h1>Prochain évènement à ne pas rater</h1>
 					<h2>{{ event.title }}</h2>
@@ -44,9 +44,9 @@
 			<p>Ici vous trouverez certains des articles nouvellement fabriqués et disponibles.</p>
 		</div>
 		<div class="col-lg-12">
-			<div class="d-md-flex flex-row overflow-auto col-md-11 mx-auto">
+			<div class="d-md-flex flex-row overflow-auto col-lg-11 mx-auto">
 				{% for product in products %}
-					<div class=" col-md-2 col-sm-6 mx-4">
+					<div class=" col-lg-2 col-sm-6 mx-4">
 						<a href="#{{ product.id }}"><img src="{{ product.picture }}" class="card-img mt-4"></a>
 					</div>
 					<div id="{{ product.id }}" class="popup__content">

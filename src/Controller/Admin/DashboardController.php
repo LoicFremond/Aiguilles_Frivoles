@@ -28,7 +28,8 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Les Aiguilles Frivoles')
-            ->setFaviconPath('/uploads/images/favicon.png');
+            ->setFaviconPath('/uploads/images/favicon.png')
+            ->disableUrlSignatures();
     }
 
     public function configureMenuItems(): iterable

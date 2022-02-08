@@ -2,7 +2,7 @@
 
 .img-fluid {
 	border-radius: 5px;
-	border: navy 4px solid;
+	border: #7f00ff 4px solid;
 }
 
 .main-sec {
@@ -30,7 +30,7 @@
 
 .popup {
 	img {
-		border: 5px solid navy;
+		border: 5px solid #7f00ff;
 		height: 350px;
 		margin: auto;
 	}
@@ -109,6 +109,6 @@
 }
 
 .event {
-	border: 3px solid #086522;
+	box-shadow: 5px 5px 50px 10px rgba(0,0,0,0.69);
 	border-radius: 5px;
 }

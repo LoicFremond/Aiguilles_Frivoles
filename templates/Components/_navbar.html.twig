@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008d4b;" id="main">
+<nav class="navbar navbar-expand-lg navbar-light" id="main">
 	<div class="mx-3" id="logo">
 		<h1>
 			<a href="/">
@@ -22,13 +22,13 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					{% for category in categories|sort((a, b) => a.name <=> b.name) %}
-						<a class="dropdown-item position-relative" style="color: black; text-shadow: none;" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}<span class="badge rounded-pill bg-secondary mx-2">
+						<a class="dropdown-item position-relative" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}<span class="badge rounded-pill bg-success mx-2">
 								{{ category.product|length }}
 							</span>
 						</a>
 					{% endfor %}
 					<hr>
-					<a class="dropdown-item" style="color: black; text-shadow: none;" disabled href="{{ path('categories') }}">Toutes les collections</a>
+					<a class="dropdown-item" disabled href="{{ path('categories') }}">Toutes les collections</a>
 				</div>
 			</li>
 			<a class="nav-item ml-md-3 mx-4 my-1" href="{{ path('contact') }}">
@@ -44,7 +44,7 @@
 							<span>
 								<i class="fas fa-shopping-cart"></i>
 							</span>
-							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
 								{{ app.session.get('cart')|length }}
 							</span>
 						</a>
@@ -55,29 +55,29 @@
 						</a>
 						<ul class="dropdown-menu">
 							{% if app.user.roles[0] == "ROLE_USER" %}
-								<a class="dropdown-item" style="color: black; text-shadow: none;" href="{{ path('profile', {'id': app.user.id}) }}">
-									<i class="fas fa-user mx-2" style="color: black; text-shadow: none;"></i>Profil</a>
-								<a class="dropdown-item" style="color: black; text-shadow: none;" href="{{ path('messages', {'id': app.user.id}) }}">
+								<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}">
+									<i class="fas fa-user mx-2"></i>Profil</a>
+								<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}">
 									<i class="fas fa-comments mx-2"></i>
 								</i>Messages</a>
-							<a class="dropdown-item" style="color: black; text-shadow: none;" href="{{ path('orders', {'id': app.user.id}) }}">
+							<a class="dropdown-item" href="{{ path('orders', {'id': app.user.id}) }}">
 								<i class="fas fa-shopping-cart mx-2"></i>
 							</i>Commandes</a>
 					{% else %}
-						<a class="dropdown-item" style="color: black; text-shadow: none;" href="https://localhost:8000/admin?menuIndex=0&routeName=notif&signature=vV3kYc_swqyix12io_4wvcPOBbdEsmYGsdGECIrjqUA&submenuIndex=-1">
+						<a class="dropdown-item" href="https://localhost:8000/admin?menuIndex=0&routeName=notif&submenuIndex=-1">
 							<i class="fas fa-tools mx-2"></i>
 							Admin</a>
 					{% endif %}
-					<a class="dropdown-item" style="color: black; text-shadow: none;" href="{{ path('logout') }}">
+					<a class="dropdown-item" href="{{ path('logout') }}">
 						<i class="fas fa-sign-out-alt mx-2"></i>Se Déconnecter</a>
 				</ul>
 			</div>
 		{% endif %}
 	{% else %}
-		<a class="nav-item nav-link" style="color: white;" href="{{ path('login') }}">
+		<a class="nav-item nav-link" href="{{ path('login') }}">
 			<i class="fas fa-sign-in-alt"></i>
 			Se connecter</a>
-		<a class="nav-item nav-link" style="color: white;" href="{{ path('register') }}">
+		<a class="nav-item nav-link" href="{{ path('register') }}">
 			<i class="fas fa-user-plus"></i>
 			S'enregistrer</a>
 	{% endif %}

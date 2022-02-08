@@ -1,12 +1,14 @@
 .footer {
+	background-color: #f8d7da;
+	box-shadow: 5px 5px 50px 10px rgba(0,0,0,0.69);
 	a {
-		color: #E6EBE0;
-		text-shadow: 1px 1px 1px #000000;
+		color: black;
+		text-shadow: 1px 1px 1px #E6EBE0;
 		font-family: 'Roboto', sans-serif;
 	}
 	p {
-		color: #E6EBE0;
-		text-shadow: 1px 1px 1px #000000;
+		color: black;
+		text-shadow: 1px 1px 1px #E6EBE0;
 		font-family: 'Roboto', sans-serif;
 	}
 }
@@ -20,7 +22,7 @@
 			margin: 0 1em;
 			a {
 				font-family: 'Roboto', sans-serif;
-				color: #E6EBE0;
+				color: black;
 				text-align: center;
 				span.fa.fa-facebook {
 					height: 32px;

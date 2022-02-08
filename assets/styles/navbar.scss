@@ -27,7 +27,7 @@
 	font-size: 0.8em;
 	font-family: 'Pacifico' cursive;
 	margin: 0;
-	color: navy;
+	color: #7f00ff;
 	letter-spacing: 4px;
 	font-weight: 600;
 	text-shadow: 3px 1px 3px rgba(78, 73, 73, 0.21);
@@ -43,15 +43,16 @@
 }
 
 .navbar {
-	border-bottom: 1px solid #086522;
+	background-color: #f8d7da;
+	box-shadow: 5px 5px 50px 10px rgba(0,0,0,0.69);
 	a {
 		font-family: 'Roboto', sans-serif;
-		color: #E6EBE0;
-		text-shadow: 1px 1px 1px #000000;
+		color: black;
+		text-shadow: 2px 2px 5px white;
 	}
 	span {
 		font-family: 'Roboto', sans-serif;
-		color: #E6EBE0;
-		text-shadow: 1px 1px 1px #000000;
+		color: black;
+		text-shadow: 2px 2px 5px white;
 	}
 }

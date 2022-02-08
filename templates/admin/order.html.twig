@@ -2,7 +2,7 @@
 
 {% block main %}
 	<div class="container-fluid">
-			<div class="accordion col-md-10 mx-5" id="accordion">
+			<div class="accordion col-lg-10 mx-5" id="accordion">
 		{% for order in orders|sort((a, b) => b.createdAt <=> a.createdAt) %}
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="heading_{{ order.id }}">

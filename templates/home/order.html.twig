@@ -10,7 +10,7 @@
 		<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h2"></i></a>
 		<h1 class="mb-3 text-center">Mes commandes
 		</h1>
-			<div class="accordion col-md-10 mx-auto my-5" id="accordion">
+			<div class="accordion col-lg-10 mx-auto my-5" id="accordion">
 		{% for order in orders|sort((a, b) => b.createdAt <=> a.createdAt) %}
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="heading_{{ order.id }}">

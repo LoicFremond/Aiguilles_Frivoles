@@ -9,7 +9,7 @@
 	<h1 class="mb-3 text-center">Mes Collections</h1>
 	<div class="container d-flex flex-wrap">
 		{% for category in categories|sort((a, b) => a.name <=> b.name) %}
-			<div class="card text-center mt-5 mx-auto col-md-5">
+			<div class="card text-center mt-5 mx-auto col-lg-5">
 				<div class="card-header alert alert-danger">
 					<h2 class="card-title">{{ category.name }}</h2>
 				</div>
