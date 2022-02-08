@@ -38,15 +38,15 @@
 		{% endif %}
 	</head>
 </div>
-<div class="container-fluid ">
+<div class="container-fluid">
 		<div class="text-center">
 			<h3 class="banner__bottom-info mb-2">Nouveautés</h3>
 			<p>Ici vous trouverez certains des articles nouvellement fabriqués et disponibles.</p>
 		</div>
 		<div class="col-lg-12">
-			<div class="d-md-flex flex-row overflow-auto col-lg-11 mx-auto">
+			<div class="d-flex flex-row overflow-auto col-lg-11 mx-auto">
 				{% for product in products %}
-					<div class=" col-lg-2 col-sm-6 mx-4">
+					<div class=" col-lg-2 col-md-4 mx-lg-4 mx-md-auto">
 						<a href="#{{ product.id }}"><img src="{{ product.picture }}" class="card-img mt-4"></a>
 					</div>
 					<div id="{{ product.id }}" class="popup__content">
