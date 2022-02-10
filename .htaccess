@@ -1,0 +1,7 @@
+# This will prevent generating "Not Found" error in browser
+# Then we will manually do the rest to produce page for user
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+    RewriteRule (.*) public/build/$1 [L]
+
+</IfModule>

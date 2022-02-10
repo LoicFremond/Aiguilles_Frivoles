@@ -28,6 +28,7 @@
 							<p class="card-text">{{ product.description }}</p>
 						</div>
 					</a>
+					{% if app.user %}
 					<div class="card-footer text-center">
 						{% for element in dataCart %}
 							{% if element.product.id == product.id %}
@@ -40,6 +41,7 @@
 								<p class="btn rupt">Rupture de stock</p>
 							{% endif %}
 					</div>
+					{% endif %}
 				</div>
 			{% else %}
 				<h2>Aucun article de disponible</h2>

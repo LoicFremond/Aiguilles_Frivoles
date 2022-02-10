@@ -102,7 +102,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         }
 
         if (in_array('ROLE_ADMIN', $token->getUser()->getRoles())) {
-            return new RedirectResponse("https://localhost:8000/admin?menuIndex=0&routeName=notif&submenuIndex=-1");
+            return new RedirectResponse('admin');
         } elseif (in_array('ROLE_USER', $token->getUser()->getRoles())) {
             return new RedirectResponse($this->urlGenerator->generate('home'));
         } else {

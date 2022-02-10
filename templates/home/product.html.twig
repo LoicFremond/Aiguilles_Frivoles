@@ -6,12 +6,12 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-	<div class="container-fluid position-relative">
+	<div class="container-fluid position-relative col-12">
 		<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h2"></i></a>
 		<h1 class="mb-3 text-center">{{ product.name }}</h1>
 		<div class="d-flex flex-wrap mx-5">
-			<img src="{{ product.picture }}" class="product__img" alt="{{ product.name }}">
-			<div class="mx-5 my-auto">
+			<img src="{{ product.picture }}" class="product__img col-4" alt="{{ product.name }}">
+			<div class="col-6 mx-2 my-auto">
 				<p>Description :
 					{{ product.description }}</p>
 				{% if product.material %}
@@ -36,6 +36,7 @@
 				{% endif %}
 			</div>
 		</div>
+					{% if app.user %}
 		<div class="text-center">
 			<p class="my-2">Prix :
 				{{ product.price }}€ + Frais de port</p>
@@ -55,5 +56,6 @@
 			<span>Partager</span>
 			<span class="visually-hidden">Partager sur Facebook</span>
 		</a>
+		{% endif %}
 	</div>
 </div></div></div>{% endblock %}
