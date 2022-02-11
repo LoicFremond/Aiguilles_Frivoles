@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
 {% block title %}Se Connecter
 {% endblock %}
 
@@ -34,10 +37,13 @@
 
 			</div> #}
 
-
-			<button class="btn btn-sm btn-outline-dark my-3s" type="submit">
+<div class="d-flex justify-content-center mb-5">
+			<button class="btn shop mx-auto" type="submit">
 				Se Connecter
 			</button>
+		<a class="btn shop mx-auto" href="{{ path('register') }}">
+			Créer un compte</a>
+			</div>
 		</form>
 	</div>
 {% endblock %}

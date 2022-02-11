@@ -74,6 +74,8 @@ class HomeController extends AbstractController
         /** @var Status $status */
         $status = $statusRepository->findOneBy(['status' => 'En attente']);
         $message->setStatus($status);
+        $recipient = $statusRepository->findOneBy(['id' => '4']);
+        $message->setRecipient($recipient);
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);
 

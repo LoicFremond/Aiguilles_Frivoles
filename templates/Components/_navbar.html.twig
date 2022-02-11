@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" id="main">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark" id="main">
 	<div class="mx-3" id="logo">
 		<h1>
 			<a href="/">
@@ -10,34 +10,31 @@
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse justify-content-end position-relative" id="navbarNavAltMarkup">
-		<div class="navbar-nav mx-auto">
+	<div class="collapse navbar-collapse position-relative" id="navbarNavAltMarkup">
+		<div class="navbar-nav mx-auto d-flex flex-row">
 			<a class="nav-item ml-md-3 mx-4 my-1" href="{{ path('about') }}">
 				<i class="fas fa-question"></i>
 				Ma Frivolité</a>
 			<li class="nav-item dropdown mx-4 my-1">
-				<a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				<a class="dropdown-toggle" href="{{ path('categories') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					<i class="fas fa-tags"></i>
 					Les Collections
 				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu mx-4" aria-labelledby="navbarDropdown">
 					{% for category in categories|sort((a, b) => a.name <=> b.name) %}
-						<a class="dropdown-item position-relative" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}<span class="badge rounded-pill bg-success mx-2">
+						<a class="dropdown-item position-relative a__category" href="{{ path('category', {'categorySlug': category.slug}) }}">{{ category.name }}<span class="badge rounded-pill bg-success mx-2">
 								{{ category.product|length }}
 							</span>
 						</a>
 					{% endfor %}
 					<hr>
-					<a class="dropdown-item" disabled href="{{ path('categories') }}">Toutes les collections</a>
+					<a class="dropdown-item a__category" disabled href="{{ path('categories') }}">Toutes les collections</a>
 				</div>
 			</li>
 			<a class="nav-item ml-md-3 mx-4 my-1" href="{{ path('contact') }}">
 				<i class="fas fa-paper-plane"></i>
 				Me Contacter</a>
-		</div>
-		<div class="navbar-nav">
-			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-				{% if app.user is defined %}
+			{% if app.user is defined %}
 					<div class="{{ app.request.attributes.get('_route') == 'cart_index' }}">
 						<a class="customer_menu_item position-relative" href={{ path('cart_index') }}>
 							<span class="cart badge badge-pill">{{ app.session.get('cartTotal')|number_format(2) }}€</span>
@@ -49,36 +46,37 @@
 							</span>
 						</a>
 					</div>
-					<div class="mx-5 btn-group dropstart">
+					<div class="nav-item dropdown mx-5">
 						<a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="profile__menu far fa-user-circle"></i>
 						</a>
-						<ul class="dropdown-menu">
-							{% if app.user.roles[0] == "ROLE_USER" %}
-								<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}">
-									<i class="fas fa-user mx-2"></i>Profil</a>
-								<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}">
-									<i class="fas fa-comments mx-2"></i>
-								</i>Messages</a>
-							<a class="dropdown-item" href="{{ path('orders', {'id': app.user.id}) }}">
-								<i class="fas fa-shopping-cart mx-2"></i>
-							</i>Commandes</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+								{% if app.user.roles[0] == "ROLE_USER" %}
+									<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}">
+										<i class="fas fa-user mx-2"></i>Profil</a>
+									<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}">
+										<i class="fas fa-comments mx-2"></i>
+									</i>Messages</a>
+								<a class="dropdown-item" href="{{ path('orders', {'id': app.user.id}) }}">
+									<i class="fas fa-shopping-cart mx-2"></i>
+								</i>Commandes</a>
+						{% else %}
+							<a class="dropdown-item a__noaccount" href="{{ path('admin') }}">
+								<i class="fas fa-tools mx-2"></i>
+								Admin</a>
+						{% endif %}
+						<a class="dropdown-item a__noaccount" href="{{ path('logout') }}">
+							<i class="fas fa-sign-out-alt mx-2"></i>Se Déconnecter</a>
 					{% else %}
-						<a class="dropdown-item" href="{{ path('admin') }}">
-							<i class="fas fa-tools mx-2"></i>
-							Admin</a>
-					{% endif %}
-					<a class="dropdown-item" href="{{ path('logout') }}">
-						<i class="fas fa-sign-out-alt mx-2"></i>Se Déconnecter</a>
-				</ul>
-			</div>
-		{% endif %}
-	{% else %}
-		<a class="nav-item nav-link" href="{{ path('login') }}">
-			<i class="fas fa-sign-in-alt"></i>
-			Se connecter</a>
-		<a class="nav-item nav-link" href="{{ path('register') }}">
-			<i class="fas fa-user-plus"></i>
-			S'enregistrer</a>
+						<a class="nav-item nav-link a__noaccount" href="{{ path('login') }}">
+							<i class="fas fa-sign-in-alt"></i>
+							Se connecter</a>
+						<a class="nav-item nav-link a__noaccount" href="{{ path('register') }}">
+							<i class="fas fa-user-plus"></i>
+							S'enregistrer</a>
+				{% endif %}
+			</ul>
+		</div>
 	{% endif %}
 </div></div></div></nav>

@@ -43,7 +43,11 @@
 			</div>
 			<div class="mx-auto">
 				<a class="btn shop m-2" href="{{ path("cart_delete_all") }}">Vider le Panier</a>
+				{% if app.user %}
 				<a class="btn shop m-2" href="{{ path("cart_basket") }}">Valider le Panier</a>
+				{% else %}
+				<a class="btn shop m-2" href="{{ path("login") }}">Valider le Panier</a>
+				{% endif %}
 			</div>
 		</div>
 	{% endif %}

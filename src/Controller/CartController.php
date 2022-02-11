@@ -166,9 +166,10 @@ class CartController extends AbstractController
         $newOrder->setPrice($data['total']);
         $ema->flush();
 
-        $this->addFlash('success', 'Votre commande a été passée avec succès. Je vous contacterai sous peu pour procéder à la finalisation et au réglement ou vous pouvez payer dès maintenant.');
+        $this->addFlash('success', 'Votre commande a été passée avec succès. Je vous contacterai sous peu pour procéder à la finalisation et au réglement.');
 
-        return $this->redirectToRoute('cart_payment');
+        $session->set("cart", []);
+        return $this->redirectToRoute('cart_finish');
     }
 
     /**

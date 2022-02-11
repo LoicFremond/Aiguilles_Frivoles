@@ -2,7 +2,7 @@
 	a {
 		color: whitesmoke;
 		font-family: 'Parisienne', cursive;
-		text-shadow: 2px 2px 5px #000000;
+		text-shadow: 2px 2px 5px #7f00ff;
 		float: left;
 		font-size: .8em;
 		display: initial;
@@ -16,7 +16,7 @@
 			font-family: 'Parisienne', cursive;
 			font-size: 1.4em;
 			font-weight: 700;
-			text-shadow: 2px 2px 5px #000000;
+			text-shadow: 2px 2px 5px #7f00ff;
 		}
 	}
 }
@@ -30,7 +30,7 @@
 	color: #7f00ff;
 	letter-spacing: 4px;
 	font-weight: 600;
-	text-shadow: 3px 1px 3px rgba(78, 73, 73, 0.21);
+	text-shadow: 2px 2px 5px #000000;
 }
 
 .profile__menu {
@@ -46,13 +46,20 @@
 	background-color: #f8d7da;
 	box-shadow: 5px 5px 50px 10px rgba(0,0,0,0.69);
 	a {
-		font-family: 'Roboto', sans-serif;
-		color: black;
-		text-shadow: 2px 2px 5px white;
+		color: white;
+		text-shadow: 2px 2px 5px #7f00ff;
 	}
 	span {
-		font-family: 'Roboto', sans-serif;
-		color: black;
-		text-shadow: 2px 2px 5px white;
+		color: white;
+		text-shadow: 2px 2px 5px #7f00ff;
 	}
+}
+
+.a__noaccount {
+	color: black !important;
+	font-size: 1.2rem;
+}
+
+.a__category {
+	color: black !important;
 }

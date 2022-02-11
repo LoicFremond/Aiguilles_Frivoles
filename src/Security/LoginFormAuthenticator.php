@@ -6,6 +6,7 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -30,18 +31,21 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     private $urlGenerator;
     private $csrfTokenManager;
     private $passwordEncoder;
+    private SessionInterface $session;
 
     public function __construct(
         EntityManagerInterface $entityManager,
         UrlGeneratorInterface $urlGenerator,
         CsrfTokenManagerInterface $csrfTokenManager,
-        UserPasswordEncoderInterface $passwordEncoder
+        UserPasswordEncoderInterface $passwordEncoder,
+        SessionInterface $session
     )
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
+        $this->session = $session;
     }
 
     public function supports(Request $request)
@@ -99,6 +103,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
+        }
+
+        if ($this->session->get("cart", [])) {
+            return new RedirectResponse($this->urlGenerator->generate('cart_index'));
         }
 
         if (in_array('ROLE_ADMIN', $token->getUser()->getRoles())) {
