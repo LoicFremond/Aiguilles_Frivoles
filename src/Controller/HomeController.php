@@ -13,6 +13,7 @@ use App\Repository\EventRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\StatusRepository;
+use App\Repository\UserRepository;
 use App\Service\CartManager;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -66,6 +67,7 @@ class HomeController extends AbstractController
      */
     public function contact(
         StatusRepository $statusRepository,
+        UserRepository $userRepository,
         EntityManagerInterface $entityManager,
         Request $request
     ) {
@@ -74,7 +76,7 @@ class HomeController extends AbstractController
         /** @var Status $status */
         $status = $statusRepository->findOneBy(['status' => 'En attente']);
         $message->setStatus($status);
-        $recipient = $statusRepository->findOneBy(['id' => '4']);
+        $recipient = $userRepository->findOneBy(['id' => '4']);
         $message->setRecipient($recipient);
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);

@@ -5,11 +5,12 @@
 
 {% block body %}
 
-	<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h2"></i></a>
+	<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h1"></i></a>
 	<div class="container">
 
 		<h1 class="mb-5 text-center">Mes Messages</h1>
 		<ul class="d-flex flex-wrap">
+		{% if messages %}
 					{% for message in messages %}
 					<div class="border col-3 m-5 p-3 text-center">
 					<li>Reçu le : {{ message.createdAt|format_datetime('long', 'short') }}</li>
@@ -17,5 +18,7 @@
 					</div>
 					{% endfor %}
 					</ul>
+		{% endif %}
 			</div>
+		<h1 class="text-center mb-5">Aucun message reçu</h1>
 	{% endblock %}

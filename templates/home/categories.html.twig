@@ -5,7 +5,7 @@
 
 {% block body %}
 
-	<a href="{{ path('home') }}"><i class="far fa-arrow-alt-circle-left h2"></i></a>
+	<a href="{{ path('home') }}"><i class="far fa-arrow-alt-circle-left h1"></i></a>
 	<h1 class="mb-3 text-center">Mes Collections</h1>
 	<div class="container d-flex flex-wrap">
 		{% for category in categories|sort((a, b) => a.name <=> b.name) %}

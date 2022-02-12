@@ -53,12 +53,12 @@
 						<ul class="dropdown-menu dropdown-menu-right">
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								{% if app.user.roles[0] == "ROLE_USER" %}
-									<a class="dropdown-item" href="{{ path('profile', {'id': app.user.id}) }}">
+									<a class="dropdown-item a__noaccount" href="{{ path('profile', {'id': app.user.id}) }}">
 										<i class="fas fa-user mx-2"></i>Profil</a>
-									<a class="dropdown-item" href="{{ path('messages', {'id': app.user.id}) }}">
+									<a class="dropdown-item a__noaccount" href="{{ path('messages', {'id': app.user.id}) }}">
 										<i class="fas fa-comments mx-2"></i>
 									</i>Messages</a>
-								<a class="dropdown-item" href="{{ path('orders', {'id': app.user.id}) }}">
+								<a class="dropdown-item a__noaccount" href="{{ path('orders', {'id': app.user.id}) }}">
 									<i class="fas fa-shopping-cart mx-2"></i>
 								</i>Commandes</a>
 						{% else %}

@@ -7,7 +7,7 @@
 
 {% block body %}
 	<div class="container-fluid">
-		<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h2"></i></a>
+		<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h1"></i></a>
 		<h1 class="mb-3 text-center">Mes commandes
 		</h1>
 			<div class="accordion col-lg-10 mx-auto my-5" id="accordion">
@@ -66,7 +66,7 @@
 					</div>
 					</div>
 				{% else %}
-					Aucune commande trouvé
+					<h1 class="text-center mb-5">Aucune commande trouvée</h1>
 				{% endfor %}
 			</div>
 			</div>

@@ -8,12 +8,12 @@
 	{% block flash_messages %}
 		{{ include('@EasyAdmin/flash_messages.html.twig') }}
 	{% endblock flash_messages %}
-	<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h2"></i></a>
+	<a href="javascript:history.go(-1)"><i class="far fa-arrow-alt-circle-left h1"></i></a>
 	<h1 class="mb-4 text-center">Panier</h1>
 	<div class="cart d-flex flex-wrap my-5">
 		{% for element in dataCart %}
 			<a href="{{ path('article', {'categorySlug' : element.product.category.slug , 'productSlug': element.product.slug}) }}">
-				<div class="card col-lg-3 mx-auto mt-3">
+				<div class="card col-lg-4 col-md-12 mx-auto mt-3">
 					<div class="card-header alert alert-danger">
 						<h2 class="text-center">{{ element.product.name }}</h2>
 					</div>
@@ -41,7 +41,7 @@
 				<h2>Total:
 					{{ total|number_format(2) }}€</h2>
 			</div>
-			<div class="mx-auto">
+			<div class="mx-auto mb-5">
 				<a class="btn shop m-2" href="{{ path("cart_delete_all") }}">Vider le Panier</a>
 				{% if app.user %}
 				<a class="btn shop m-2" href="{{ path("cart_basket") }}">Valider le Panier</a>

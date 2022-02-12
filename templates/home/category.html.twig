@@ -9,7 +9,9 @@
 
 {% block body %}
 	<div class="container-fluid">
-		<a href="{{ path('categories') }}"><i class="far fa-arrow-alt-circle-left h2"></i></a>
+		<a href="{{ path('categories') }}">
+			<i class="far fa-arrow-alt-circle-left h1"></i>
+		</a>
 		<h1 class="mb-3 text-center">{{ category.name }}</h1>
 		<div class="d-flex flex-wrap">
 			{% for product in selectByCategory %}
@@ -34,11 +36,11 @@
 								<a class="btn rupt position-absolute" href="{{ path('cart_delete', {'id': product.id}) }}">Supprimer du panier</a>
 							{% endif %}
 						{% endfor %}
-							{% if product.status == true %}
-								<a class="btn shop" href="{{ path('cart_add', {'id': product.id}) }}">Ajouter au panier</a>
-							{% else %}
-								<p class="btn rupt">Rupture de stock</p>
-							{% endif %}
+						{% if product.status == true %}
+							<a class="btn shop" href="{{ path('cart_add', {'id': product.id}) }}">Ajouter au panier</a>
+						{% else %}
+							<p class="btn rupt">Rupture de stock</p>
+						{% endif %}
 					</div>
 				</div>
 			{% else %}
